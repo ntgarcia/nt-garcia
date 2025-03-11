@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
 }
 
 @theme inline {
@@ -16,11 +19,101 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #999999;
   }
+}
+
+* {
+  cursor: none !important;
+}
+
+html,
+body {
+  cursor: none !important;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+/* Ensure cursor is visible during page transitions */
+html.nprogress-busy * {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform, width, height;
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.2s ease;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  /* Improve performance */
+  contain: layout style size;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.cursor-hovering {
+  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clickable {
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.clickable:hover {
+  opacity: 0.9;
+}
+
+a, button, .clickable {
+  transition: all 0.2s ease;
+}
+
+a:hover, button:hover {
+  opacity: 0.9;
+}
+
+/* Ensure links are properly styled for cursor */
+a, button, [role="button"], .clickable {
+  cursor: none !important;
+}
+
+.ascii-art {
+  font-family: var(--font-mono);
+  white-space: pre;
+  line-height: 1;
+}
+
+/* Footer styling */
+footer#contact {
+  position: relative;
+  margin-top: 10rem;
+  box-shadow: 0 -10px 30px -15px rgba(0, 0, 0, 0.1);
+}
+
+footer#contact::before {
+  content: '';
+  position: absolute;
+  top: -3rem;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+footer#contact svg path {
+  fill: var(--foreground);
 }
