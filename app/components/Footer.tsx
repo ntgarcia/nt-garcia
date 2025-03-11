@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="ascii-art mb-20 text-center">
             <pre className="font-mono text-inherit whitespace-pre overflow-x-auto">
 {`
-.・。.・゜✭・.・✫・゜・。.
+.・。.・゜✭・.🦶.・✫・゜・。.
 `}
             </pre>
         </div>

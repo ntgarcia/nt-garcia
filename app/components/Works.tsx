@@ -19,7 +19,7 @@ const projects: Project[] = [
     description:
       "World Usability Day 2024 Winner — Empowering the underrepresented.",
     tags: ["UX", "Web Dev", "Design"],
-    imageUrl: "/NewYYC/cover.png",
+    imageUrl: "/newyyc/cover.png",
     slug: "newyyc",
   },
   {
@@ -28,7 +28,7 @@ const projects: Project[] = [
     description:
       "Leading marketing and design for Mount Royal University's annual hackathon.",
     tags: ["Marketing", "Design"],
-    imageUrl: "/MRUHacks/cover.jpg",
+    imageUrl: "/mruhacks/cover.jpg",
     slug: "mruhacks-2025",
   },
   {
