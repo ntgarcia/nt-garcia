@@ -7,11 +7,52 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true); // Start visible by default
   const [isHovering, setIsHovering] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false); // Track if device is desktop
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const positionRef = useRef({ x: 0, y: 0 });
   const isHoveringRef = useRef(false);
   const pathname = usePathname();
   const router = useRouter();
+  
+  // Check if the device is desktop with a mouse
+  useEffect(() => {
+    // Function to check if device has a mouse
+    const checkIfDesktop = () => {
+      // Check if window exists (client-side only)
+      if (typeof window !== 'undefined') {
+        // Check if device has fine pointer (mouse)
+        const hasMousePointer = window.matchMedia('(pointer: fine)').matches;
+        setIsDesktop(hasMousePointer);
+      }
+    };
+    
+    // Initial check
+    checkIfDesktop();
+    
+    // Listen for changes (e.g., if user connects a mouse to mobile)
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+    };
+    
+    // Add listener if supported
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaChange);
+    } else {
+      // Fallback for older browsers
+      mediaQuery.addListener(handleMediaChange);
+    }
+    
+    // Cleanup
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaChange);
+      } else {
+        // Fallback for older browsers
+        mediaQuery.removeListener(handleMediaChange);
+      }
+    };
+  }, []);
   
   // Reset cursor visibility when route changes
   useEffect(() => {
@@ -46,7 +87,11 @@ export default function CustomCursor() {
     };
   }, []);
   
+  // Only run cursor logic if on desktop
   useEffect(() => {
+    // Skip all cursor logic if not on desktop
+    if (!isDesktop) return;
+    
     let animationFrameId: number;
     let currentX = 0;
     let currentY = 0;
@@ -169,7 +214,7 @@ export default function CustomCursor() {
       document.removeEventListener("mouseout", handleHoverEnd);
       document.removeEventListener("click", handleClick);
     };
-  }, [isVisible]);
+  }, [isVisible, isDesktop]); // Added isDesktop as a dependency
 
   // Update ref when state changes
   useEffect(() => {
@@ -177,6 +222,9 @@ export default function CustomCursor() {
   }, [isHovering]);
 
   const cursorSize = isHovering ? 36 : 24;
+
+  // Don't render the cursor at all on non-desktop devices
+  if (!isDesktop) return null;
 
   return (
     <div

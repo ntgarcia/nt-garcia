@@ -25,24 +25,32 @@
   }
 }
 
-* {
-  cursor: none !important;
-}
+/* Only hide default cursor on devices with a mouse */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 
-html,
-body {
-  cursor: none !important;
+  html,
+  body {
+    cursor: none !important;
+  }
+
+  /* Ensure cursor is visible during page transitions */
+  html.nprogress-busy * {
+    cursor: none !important;
+  }
+
+  /* Ensure links are properly styled for cursor */
+  a, button, [role="button"], .clickable {
+    cursor: none !important;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--text-secondary);
   font-family: var(--font-sans);
-}
-
-/* Ensure cursor is visible during page transitions */
-html.nprogress-busy * {
-  cursor: none !important;
 }
 
 .custom-cursor {
@@ -83,11 +91,6 @@ a, button, .clickable {
 
 a:hover, button:hover {
   opacity: 0.9;
-}
-
-/* Ensure links are properly styled for cursor */
-a, button, [role="button"], .clickable {
-  cursor: none !important;
 }
 
 .ascii-art {
