@@ -88,7 +88,7 @@ export default function Blog() {
                   {post.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs font-mono bg-secondary/10 px-2 py-1"
+                      className="text-xs font-mono border bg-secondary/10 px-2 py-1"
                     >
                       {tag}
                     </span>
