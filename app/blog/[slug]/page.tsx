@@ -47,7 +47,7 @@ export default function BlogPostPage() {
       <main className="min-h-screen pt-24 pb-20 px-4">
         <div className="max-w-3xl mx-auto">
           <Link
-            href="/#blog"
+            href="/blog"
             className="font-mono text-muted hover:underline mb-8 inline-block clickable"
           >
             ← Back to blog

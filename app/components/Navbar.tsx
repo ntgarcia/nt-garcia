@@ -3,6 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeSelector from "./ThemeSelector";
+import {
+  GithubLogo,
+  LinkedinLogo,
+} from "@phosphor-icons/react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +29,10 @@ export default function Navbar() {
     };
   }, [scrolled]);
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleScrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
     if (isHomePage) {
       e.preventDefault();
       const section = document.querySelector(sectionId);
@@ -37,117 +45,148 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "py-2 bg-background/40 backdrop-blur-sm scrolled" 
-          : "py-4"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-background/80 backdrop-blur-sm`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="font-mono text-primary">
-          <Link href="/" className="clickable">
-            <span className="hidden sm:inline-block"> NT（• ˕ •マ.ᐟ</span>
-            <span className="sm:hidden">NT</span>
-          </Link>
-        </div>
+      <div className="flex items-center justify-between px-8 md:px-16 h-16">
+        <Link
+          href="/"
+          className="font-mono text-sm hover:text-primary transition-colors clickable"
+        >
+          NT（• ˕ •マ.ᐟ
+        </Link>
 
-        {/* Mobile menu button */}
-        <button 
-          className="md:hidden flex items-center clickable"
+        <button
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span className="sr-only">Menu</span>
-          <div className="w-6 flex flex-col gap-1">
-            <span className={`block h-0.5 w-full bg-current transform transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`block h-0.5 w-full bg-current transition-opacity duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-            <span className={`block h-0.5 w-full bg-current transform transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          <div className="space-y-1.5">
+            <span className="block w-6 h-0.5 bg-foreground"></span>
+            <span className="block w-6 h-0.5 bg-foreground"></span>
+            <span className="block w-6 h-0.5 bg-foreground"></span>
           </div>
         </button>
 
-        {/* Desktop menu */}
-        <ul className="hidden md:flex space-x-6 font-mono text-sm">
-          <li>
-            <Link 
-              href={isHomePage ? "#home" : "/#home"} 
-              className="hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#home")}
-            >
-              /home
-            </Link>
-          </li>
+        <ul className="hidden md:flex space-x-6 font-mono items-center text-sm">
           <li>
             <Link
               href={isHomePage ? "#works" : "/#works"}
               className="hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#works")}
+              onClick={(e) =>
+                handleScrollToSection(e, "#works")
+              }
             >
               /works
             </Link>
           </li>
           <li>
-            <Link 
-              href={isHomePage ? "#blog" : "/#blog"} 
+            <Link
+              href="/blog"
               className="hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#blog")}
             >
               /blog
             </Link>
           </li>
           <li>
             <Link
+              href="/now"
+              className="hover:text-primary transition-colors"
+            >
+              /now
+            </Link>
+          </li>
+          {/* <li>
+            <Link
               href={isHomePage ? "#contact" : "/#contact"}
               className="hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#contact")}
+              onClick={(e) =>
+                handleScrollToSection(e, "#contact")
+              }
             >
               /contact
             </Link>
+          </li> */}
+          <div className="flex space-x-2">
+            <li>
+              <Link
+                href="https://github.com/nt-dot"
+                className="hover:text-primary transition-colors"
+              >
+                <GithubLogo size={24} />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="https://www.linkedin.com/in/nt-dot"
+                className="hover:text-primary transition-colors"
+              >
+                <LinkedinLogo size={24} />
+              </Link>
+            </li>
+          </div>
+          <li>
+            <ThemeSelector />
           </li>
         </ul>
       </div>
 
       {/* Mobile menu */}
-      <div 
+      <div
         className={`md:hidden absolute w-full bg-background transition-all duration-300 overflow-hidden ${
-          menuOpen ? 'max-h-60 py-4' : 'max-h-0'
+          menuOpen ? "max-h-100 py-4" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col space-y-4 px-4 font-mono text-sm">
-          <li>
-            <Link 
-              href={isHomePage ? "#home" : "/#home"} 
-              className="block py-2 hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#home")}
-            >
-              /home
-            </Link>
-          </li>
+        <ul className="flex flex-col space-y-4 px-8 font-mono text-sm">
           <li>
             <Link
               href={isHomePage ? "#works" : "/#works"}
               className="block py-2 hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#works")}
+              onClick={(e) =>
+                handleScrollToSection(e, "#works")
+              }
             >
               /works
             </Link>
           </li>
           <li>
-            <Link 
-              href={isHomePage ? "#blog" : "/#blog"} 
+            <Link
+              href="/blog"
               className="block py-2 hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#blog")}
+              onClick={() => setMenuOpen(false)}
             >
               /blog
             </Link>
           </li>
           <li>
             <Link
-              href={isHomePage ? "#contact" : "/#contact"}
+              href="/now"
               className="block py-2 hover:text-primary transition-colors"
-              onClick={(e) => handleScrollToSection(e, "#contact")}
+              onClick={() => setMenuOpen(false)}
             >
-              /contact
+              /now
             </Link>
+          </li>
+          <li>
+            <Link
+              href="https://github.com/nt-dot"
+              className="hover:text-primary transition-colors inline-flex items-center space-x-2 py-2"
+            >
+              <GithubLogo size={20} />
+              <span>GitHub</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://www.linkedin.com/in/nt-dot"
+              className="hover:text-primary transition-colors inline-flex items-center space-x-2 py-2"
+            >
+              <LinkedinLogo size={20} />
+              <span>LinkedIn</span>
+            </Link>
+          </li>
+
+          <li className="py-2">
+            <ThemeSelector />
           </li>
         </ul>
       </div>

@@ -8,11 +8,11 @@ export default function Header() {
   return (
     <header
       id="home"
-      className="pt-24 min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden"
+      className="pt-30 flex flex-col px-8 md:px-16 relative overflow-hidden"
     >
       <Sparkles />
-      <div className="max-w-3xl mx-auto text-center z-10">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+      <div className="max-w-3xl z-10">
+        <div className="flex flex-col sm:flex-row gap-4">
           <h1 className="font-mono text-primary">
             <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl inline-flex items-center">
               <GreetingScramble
@@ -29,36 +29,24 @@ export default function Header() {
               </span>
             </span>
             <br />
-            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl inline-block ml-2 text-muted mt-4">
+            {/* <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl inline-block ml-2 text-muted mt-4">
               👋 •⩊• )
-            </span>
+            </span> */}
           </h1>
         </div>
 
-        <br />
-        <span className="block mt-4 text-muted">
+        {/* <span className="block mt-4 text-muted">
           ~ ✦ ~ ✧ ~ ✦ ~
-        </span>
+        </span> */}
 
-        <p className="text-lg sm:text-xl font-mono mt-8 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl font-mono mt-6 max-w-2xl">
           I'm a designer ⁄ programmer based in Alberta,
           Canada 🇨🇦
         </p>
-        <p className="font-mono mt-2">
+        <p className="font-mono mt-4">
           Currently studying Computer Info Systems @ Mount
           Royal University
         </p>
-        <button
-          onClick={() => {
-            document
-              .getElementById("works")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="text-xl sm:text-2xl font-mono my-10 max-w-2xl mx-auto animate-bounce cursor-pointer bg-transparent border-none"
-          aria-label="Scroll to works section"
-        >
-          ↓ ↓ ↓
-        </button>
       </div>
     </header>
   );

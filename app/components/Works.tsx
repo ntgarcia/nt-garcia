@@ -42,9 +42,9 @@ const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Canadian Alliance for Intergenerational Living",
+    title: "CAIL",
     description:
-      "SAIT Capstone Project 2023",
+      "2024 SAIT Capstone Project 2024 for the Canadian Alliance for Intergenerational Living.",
     tags: ["Full Stack", "Web Dev", "UX"],
     imageUrl: "/cail/cail-preview.png",
     slug: "cail",
@@ -53,25 +53,25 @@ const projects: Project[] = [
 
 export default function Works() {
   return (
-    <section id="works" className="py-20 px-4">
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-12 text-center">
+    <section id="works" className="py-20 px-8 md:px-16">
+      <div className="max-w-6xl mx-auto">
+        {/* <div className="mb-12 text-center">
           <h2 className="text-3xl font-mono text-primary mb-4">
             ˗ˏˋ Selected Worksˎˊ˗
           </h2>
           <p className="font-mono text-muted">
             Check out my projects below
           </p>
-        </div>
+        </div> */}
 
-        <div className="space-y-12 sm:space-y-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {projects.map((project) => (
-            <Link 
-              key={project.id} 
+            <Link
+              key={project.id}
               href={`/projects/${project.slug}`}
               className="block overflow-hidden bg-background rounded-sm transition-transform hover:scale-[1.01] clickable"
             >
-              <div className="aspect-w-16 aspect-h-9 relative h-[200px] sm:h-[300px] md:h-[400px] w-full my-2">
+              <div className="aspect-w-16 aspect-h-9 relative h-[200px] sm:h-[250px] w-full">
                 <div className="absolute inset-0 flex items-center justify-center bg-secondary/10">
                   <Image
                     src={project.imageUrl}
@@ -81,24 +81,26 @@ export default function Works() {
                   />
                 </div>
               </div>
-              
+
               <div className="p-4">
-                <h3 className="text-xl sm:text-2xl font-mono text-primary mb-2">
-                  {project.title}
-                </h3>
-                <p className="font-mono text-muted text-sm sm:text-base mb-4">
+                <div className="flex items-center gap-4 mb-2">
+                  <h3 className="text-lg font-mono text-primary">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-1">
+                    {project.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-xs font-mono border bg-secondary/10 px-2 py-0.5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <p className="font-mono text-muted text-sm">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs sm:text-sm font-mono border bg-secondary/10 px-2 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
             </Link>
           ))}
