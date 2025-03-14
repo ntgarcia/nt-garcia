@@ -47,7 +47,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-background/80 backdrop-blur-sm`}
     >
-      <div className="flex items-center justify-between px-8 md:px-16 h-16">
+      <div className="flex items-center justify-between px-4 md:px-8 h-16 max-w-7xl mx-auto">
         <Link
           href="/"
           className="font-mono text-sm hover:text-primary transition-colors clickable"
@@ -136,7 +136,7 @@ export default function Navbar() {
           menuOpen ? "max-h-100 py-4" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col space-y-4 px-8 font-mono text-sm">
+        <ul className="flex flex-col space-y-4 px-4 font-mono text-sm max-w-7xl mx-auto">
           <li>
             <Link
               href={isHomePage ? "#works" : "/#works"}
@@ -186,7 +186,7 @@ export default function Navbar() {
           </li>
 
           <li className="py-2">
-            <ThemeSelector />
+            <ThemeSelector isMobile={true} />
           </li>
         </ul>
       </div>

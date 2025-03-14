@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
 export default function Blog() {
   return (
     <section id="blog" className="py-20 bg-secondary/5">
-      <div className="max-w-6xl mx-auto">
+
         {/* <div className="mb-12 text-center">
           <h2 className="text-3xl font-mono text-primary mb-4">
             My Writings
@@ -77,13 +77,10 @@ export default function Blog() {
                 <div className="mb-2 font-mono text-muted text-xs sm:text-sm">
                   {post.date}
                 </div>
-                <h3 className="text-lg sm:text-xl font-mono text-primary mb-2 sm:mb-4">
-                  {post.title}
-                </h3>
-                <p className="font-mono text-sm sm:text-base mb-4">
-                  {post.excerpt}
-                </p>
                 <div className="flex flex-wrap gap-2">
+                  <h3 className="text-lg sm:text-xl font-mono text-primary mb-2 sm:mb-4">
+                    {post.title}
+                  </h3>
                   {post.tags.map((tag, index) => (
                     <span
                       key={index}
@@ -93,6 +90,10 @@ export default function Blog() {
                     </span>
                   ))}
                 </div>
+                <p className="font-mono text-sm sm:text-base mb-4">
+                  {post.excerpt}
+                </p>
+
               </Link>
             ))
           )}
@@ -106,7 +107,7 @@ export default function Blog() {
             View all posts
           </a>
         </div> */}
-      </div>
+
     </section>
   );
 }

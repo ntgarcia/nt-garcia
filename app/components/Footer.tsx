@@ -32,9 +32,9 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="mt-40 py-16 px-4 bg-foreground text-background"
+      className="mt-40 py-16 px-4 md:px-8 bg-foreground text-background"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* <div className="ascii-art mb-20 text-center">
           <pre className="font-mono text-inherit whitespace-pre-line">
             .・。.・゜✭・.🦶.・✫・゜・。.

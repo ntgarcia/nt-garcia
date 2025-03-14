@@ -9,11 +9,11 @@
 }
 
 .dark {
-  --background: #0c0c1c;
-  --foreground: #e4e7ee;
-  --text-primary: #cadaea;
-  --text-secondary: #dbe5ee;
-  --text-muted: #a2aab5;
+  --background: #0e0e0e;
+  --foreground: #ececec;
+  --text-primary: #ececec;
+  --text-secondary: #ececec;
+  --text-muted: #bdbdbd;
 }
 
 @theme inline {
