@@ -31,8 +31,10 @@ const mruhacksImages = [
 ];
 
 const ryushinjuImages = [
+  "/design/ryushinju/logo-full.png",
+  "/design/ryushinju/logo-icon.png",
+  "/design/ryushinju/logo-word.png",
   "/design/ryushinju/ig-preview.png",
-  "/design/ryushinju/logo-full.png"
 ];
 
 const bolderImages = [
@@ -52,6 +54,25 @@ const chiasImages = [
   "/design/chias/Instagram post - 30.png",
 ];
 
+const artImages = [
+  "/design/etc/arcy.jpg",
+  "/design/etc/lake.jpg",
+  "/design/etc/ubc.jpg",
+]
+
+const logoImages = [
+  "/design/etc/field.jpg",
+  "/design/etc/royala.jpg",
+  "/design/etc/turnt.jpg",
+  "/design/etc/yeno.jpg",
+]
+
+const osuImages = [
+  "/design/osumouse/bp.png",
+  "/design/osumouse/b.png",
+  "/design/osumouse/p.png",
+]
+
 // Reorganized projects - actual projects first, slideshows at the bottom
 const projects: Project[] = [
   // Actual projects at the top
@@ -65,10 +86,20 @@ const projects: Project[] = [
     type: "project",
   },
   {
+    id: 5,
+    imageUrl: "/movieclub/movieclub.gif",
+    slug: "movie-club",
+    height: 300,
+    title: "CC Movie Club",
+    tags: ["Web Dev", "Front End"],
+    type: "experiment",
+    externalUrl: "https://www.creamcheese.club/",
+  },
+  {
     id: 2,
     imageUrl: "/mruhacks/cover.jpg",
     slug: "mruhacks-2025",
-    height: 320,
+    height: 280,
     title: "MRUHacks 2025",
     tags: ["Marketing", "Design"],
     type: "project",
@@ -77,10 +108,20 @@ const projects: Project[] = [
     id: 3,
     imageUrl: "/cail/cail-preview.png",
     slug: "cail",
-    height: 350,
+    height: 260,
     title: "CAIL",
     tags: ["Full Stack", "Web Dev"],
     type: "project",
+  },
+
+  {
+    id: 6,
+    imageUrl: "/design/mruhacks/mruhacksreel-1.gif",
+    slug: "",
+    height: 600,
+    title: "MRUHacks Reel",
+    tags: [],
+    type: "slideshow",
   },
   {
     id: 4,
@@ -92,57 +133,49 @@ const projects: Project[] = [
     type: "experiment",
   },
   {
-    id: 5,
-    imageUrl: "/movieclub/movieclub.gif",
-    slug: "movie-club",
+    id: 12,
+    imageUrl: "/design/etc/field.jpg",
+    slug: "",
     height: 300,
-    title: "Creamcheese Movie Club",
-    tags: ["Web Dev", "Front End"],
-    type: "experiment",
-    externalUrl: "https://www.creamcheese.club/",
+    title: "Logo Designs",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: logoImages,
   },
   {
-    id: 6,
-    imageUrl: "/design/mruhacks/mruhacksreel-1.gif",
+    id: 14,
+    imageUrl: "/design/osumouse/bp.png",
+    slug: "",
+    height: 320,
+    title: "osu! Mouse",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: osuImages,
+  },
+
+
+  {
+    id: 13,
+    imageUrl: "/design/etc/spinback.png",
     slug: "",
     height: 600,
-    title: "MRUHacks Reel",
+    title: "Spinback",
     tags: [],
     type: "slideshow",
   },
 
 
-  // Slideshows at the bottom
-  {
-    id: 7,
-    imageUrl: "/mruhacks/cover.jpg",
-    slug: "",
-    height: 400,
-    title: "MRUHacks Design",
-    tags: [],
-    type: "slideshow",
-    slideshowImages: mruhacksImages,
-  },
-  {
-    id: 8,
-    imageUrl: "/design/ryushinju/logo-full.png",
-    slug: "",
-    height: 350,
-    title: "Ryushinju Branding",
-    tags: [],
-    type: "slideshow",
-    slideshowImages: ryushinjuImages,
-  },
-  {
-    id: 9,
-    imageUrl: "/design/bolder/beats.png",
-    slug: "",
-    height: 400,
-    title: "Bolder Climbing",
-    tags: [],
-    type: "slideshow",
-    slideshowImages: bolderImages,
-  },
+
+  // {
+  //   id: 7,
+  //   imageUrl: "/mruhacks/cover.jpg",
+  //   slug: "",
+  //   height: 400,
+  //   title: "MRUHacks Design",
+  //   tags: [],
+  //   type: "slideshow",
+  //   slideshowImages: mruhacksImages,
+  // },
   {
     id: 10,
     imageUrl: "/design/chias/icon.png",
@@ -153,54 +186,46 @@ const projects: Project[] = [
     type: "slideshow",
     slideshowImages: chiasImages,
   },
+  {
+    id: 11,
+    imageUrl: "/design/etc/arcy.jpg",
+    slug: "",
+    height: 600,
+    title: "Plein April",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: artImages,
+  },
+  {
+    id: 8,
+    imageUrl: "/design/ryushinju/logo-full.png",
+    slug: "",
+    height: 400,
+    title: "Ryushinju Branding",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: ryushinjuImages,
+  },
+
+
+  {
+    id: 9,
+    imageUrl: "/design/bolder/beats.png",
+    slug: "",
+    height: 400,
+    title: "Bolder Climbing",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: bolderImages,
+  },
+
+
+
 ];
 
-// Framer Motion variants for animations
-const projectCardVariants = {
-  initial: { 
-    scale: 1,
-  },
-  hover: { 
-    scale: 1.02, 
-  }
-};
-
-const imageVariants = {
-  initial: { scale: 1 },
-  hover: { scale: 1.05, transition: { duration: 0.7 } }
-};
-
-const overlayVariants = {
-  initial: { opacity: 0 },
-  hover: { opacity: 1 }
-};
-
-const textContainerVariants = {
-  initial: { y: 10, opacity: 0 },
-  hover: { 
-    y: 0, 
-    opacity: 1,
-    transition: { 
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-};
-
-const textItemVariants = {
-  initial: { y: 10, opacity: 0 },
-  hover: { 
-    y: 0, 
-    opacity: 1,
-    transition: { duration: 0.3 }
-  }
-};
-
 // Memoize the ProjectItem component to prevent unnecessary re-renders
-const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: { 
+const ProjectItem = memo(({ project }: { 
   project: Project, 
-  onHoverStart: (project: Project, e: any) => void, 
-  onHoverEnd: () => void 
 }) => {
   // For slideshow type, render the image loop component but don't include hover effects
   if (project.type === "slideshow") {
@@ -242,22 +267,15 @@ const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: {
     return <Link href={`/projects/${project.slug}`} className="block">{children}</Link>;
   };
   
-  // Regular project with link and hover effects
+  // Regular project with link but no hover effects
   return (
     <LinkWrapper>
-      <motion.div
-        className="relative w-full overflow-hidden rounded-lg"
-        initial="initial"
-        whileHover="hover"
-        variants={projectCardVariants}
-        onHoverStart={(e) => onHoverStart(project, e)}
-        onHoverEnd={onHoverEnd}
-      >
+      <div className="relative w-full overflow-hidden rounded-lg">
         <div 
           className="relative w-full overflow-hidden" 
           style={{ height: `${project.height || 300}px` }}
         >
-          <motion.div className="absolute inset-0" variants={imageVariants}>
+          <div className="absolute inset-0">
             <Image
               src={project.imageUrl}
               alt={project.title}
@@ -266,36 +284,65 @@ const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority
             />
-          </motion.div>
+          </div>
           
-          {/* Gradient overlay and text */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
-            variants={overlayVariants}
+          {/* Progressive blur effect using the CodePen technique */}
+          <div 
+            className="absolute inset-x-0 bottom-0 h-full"
+            style={{
+              background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%)',
+            }}
           >
-            <motion.div 
-              className="absolute inset-x-0 bottom-0 p-4 text-white"
-              variants={textContainerVariants}
-            >
-              <motion.h3 className="text-lg font-mono mb-2" variants={textItemVariants}>
+            {/* Progressive blur container with mask and @supports rule */}
+            <style jsx>{`
+              @supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+                .backdrop-blur {
+                  -webkit-backdrop-filter: blur(40px);
+                  backdrop-filter: blur(40px);
+                  background-color: transparent !important;
+                }
+                .fallback-blur {
+                  display: none;
+                }
+              }
+            `}</style>
+            
+            <div 
+              className="backdrop-blur absolute inset-0"
+              style={{
+                maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 70%)',
+                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 70%)',
+              }}
+            />
+            
+            {/* Fallback for browsers that don't support backdrop-filter */}
+            <div 
+              className="fallback-blur absolute inset-0 bg-black/70"
+              style={{
+                maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 70%)',
+                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.98) 5%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 70%)',
+              }}
+            />
+            
+            {/* Content container */}
+            <div className="absolute inset-x-0 bottom-0 p-4 text-white">
+              <h3 className="text-lg font-mono mb-2">
                 {project.title}
-              </motion.h3>
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, index) => (
-                  <motion.span
+                  <span
                     key={index}
                     className="px-2 py-1 text-xs font-mono bg-white/20 backdrop-blur-sm rounded-sm"
-                    variants={textItemVariants}
-                    custom={index}
                   >
                     {tag}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </LinkWrapper>
   );
 });
@@ -304,48 +351,8 @@ const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: {
 ProjectItem.displayName = 'ProjectItem';
 
 export default function Works() {
-  // Simplified approach with fewer refs
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const [hoveredItem, setHoveredItem] = useState<Project | null>(null);
-  const isHoveringRef = useRef(false);
-
-  // Track mouse position with throttling to reduce renders
-  useEffect(() => {
-    let lastUpdateTime = 0;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      // Only update cursor position if we're hovering over a project
-      if (isHoveringRef.current) {
-        const now = Date.now();
-        // Throttle updates to every 16ms (roughly 60fps)
-        if (now - lastUpdateTime > 16) {
-          setCursorPosition({ x: e.clientX, y: e.clientY });
-          lastUpdateTime = now;
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  // // Get hover text based on project type
-  // const getHoverText = (type: ProjectType, hasExternalUrl: boolean = false) => {
-  //   if (hasExternalUrl) return "Visit Site";
-    
-  //   switch (type) {
-  //     case "project": return "View Project";
-  //     case "experiment": return "See Experiment";
-  //     case "art": return "View Artwork";
-  //     case "tweet": return "Read Thoughts";
-  //     case "design": return "Explore Design";
-  //     case "slideshow": return ""; // Return empty string for slideshows
-  //     default: return "View Details";
-  //   }
-  // };
-
+  // Remove all hover-related state and effects
+  
   // Group projects into columns for a masonry-like layout
   const getColumnProjects = () => {
     const columns = {
@@ -365,46 +372,8 @@ export default function Works() {
   
   const columnProjects = getColumnProjects();
   
-  // Handlers for hover events
-  const handleHoverStart = (project: Project, e: any) => {
-    isHoveringRef.current = true;
-    setHoveredItem(project);
-    
-    // Get mouse position from the event parameter
-    if (e && 'clientX' in e && 'clientY' in e) {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
-    }
-  };
-  
-  const handleHoverEnd = () => {
-    isHoveringRef.current = false;
-    setHoveredItem(null);
-  };
-  
   return (
-    <section id="works" className="py-20 px-4 md:px-8 relative">
-      {/* Custom cursor */}
-      <AnimatePresence>
-        {hoveredItem && hoveredItem.type !== "slideshow" && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="fixed pointer-events-none z-50 flex items-center justify-center"
-            style={{ 
-              position: "fixed",
-              left: cursorPosition.x,
-              top: cursorPosition.y,
-              transform: "translate(-50%, -50%)"
-            }}
-          >
-            {/* <span className="bg-black text-white px-3 py-1 text-sm font-mono rounded-full whitespace-nowrap transform -translate-y-8">
-              {getHoverText(hoveredItem.type, !!hoveredItem.externalUrl)}
-            </span> */}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
+    <section id="works" className=" py-10 md:py-20 px-4 md:px-8 relative">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Column 1 */}
@@ -412,9 +381,7 @@ export default function Works() {
             {columnProjects.col1.map((project) => (
               <ProjectItem 
                 key={project.id} 
-                project={project} 
-                onHoverStart={handleHoverStart}
-                onHoverEnd={handleHoverEnd}
+                project={project}
               />
             ))}
           </div>
@@ -425,8 +392,6 @@ export default function Works() {
               <ProjectItem 
                 key={project.id} 
                 project={project}
-                onHoverStart={handleHoverStart}
-                onHoverEnd={handleHoverEnd}
               />
             ))}
           </div>
@@ -437,8 +402,6 @@ export default function Works() {
               <ProjectItem 
                 key={project.id} 
                 project={project}
-                onHoverStart={handleHoverStart}
-                onHoverEnd={handleHoverEnd}
               />
             ))}
           </div>
@@ -449,8 +412,6 @@ export default function Works() {
               <ProjectItem 
                 key={project.id} 
                 project={project}
-                onHoverStart={handleHoverStart}
-                onHoverEnd={handleHoverEnd}
               />
             ))}
           </div>

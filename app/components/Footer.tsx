@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ArrowUpRight } from "@phosphor-icons/react";
 
 export default function Footer() {
   const [currentTime, setCurrentTime] =
@@ -79,9 +80,12 @@ export default function Footer() {
               <a
                 href="https://github.com/ntgarcia"
                 target="_blank"
-                className="font-mono hover:underline transition-colors clickable"
+                className="font-mono hover:underline transition-colors clickable flex items-center gap-1"
               >
-                Github{" "}
+                Github
+                <span className="inline-flex items-center justify-center bg-background text-foreground rounded-full ml-1 p-0.5">
+                  <ArrowUpRight size={14} weight="bold" />
+                </span>
                 {/* <span className="opacity-70">
                   {" "}
                   /ᐠ - ˕ -マ
@@ -90,17 +94,23 @@ export default function Footer() {
               <a
                 href="https://www.linkedin.com/in/ntns/"
                 target="_blank"
-                className="font-mono hover:underline transition-colors clickable"
+                className="font-mono hover:underline transition-colors clickable flex items-center gap-1"
               >
-                LinkedIn{" "}
+                LinkedIn
+                <span className="inline-flex items-center justify-center bg-background text-foreground rounded-full ml-1 p-0.5">
+                  <ArrowUpRight size={14} weight="bold" />
+                </span>
                 {/* <span className="opacity-70">(⌐■_■)</span> */}
               </a>
               <a
                 href="https://drive.google.com/file/d/1S1gZkTC1wIlg8kr2Q_BnHoDhKTeqVEHW/view?usp=sharing"
                 target="_blank"
-                className="font-mono hover:underline transition-colors clickable"
+                className="font-mono hover:underline transition-colors clickable flex items-center gap-1"
               >
-                Resume{" "}
+                Resume
+                <span className="inline-flex items-center justify-center bg-background text-foreground rounded-full ml-1 p-0.5">
+                  <ArrowUpRight size={14} weight="bold" />
+                </span>
                 {/* <span className="opacity-70">
                   ( •̀ᴗ•́ )و ̑̑{" "}
                 </span> */}

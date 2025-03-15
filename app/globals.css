@@ -3,7 +3,7 @@
 :root {
   --background: #fdf6ec;
   --foreground: #2c1810;
-  --text-primary: #1a0f0a;
+  --text-primary: #2e0f00;
   --text-secondary: #4a332b;
   --text-muted: #7d5f56;
 }
@@ -13,7 +13,7 @@
   --foreground: #ececec;
   --text-primary: #ececec;
   --text-secondary: #ececec;
-  --text-muted: #bdbdbd;
+  --text-muted: #8f8f8f;
 }
 
 @theme inline {

@@ -75,7 +75,6 @@ const projects: Project[] = [
     liveUrl: "https://new-yyc.vercel.app/",
     githubUrl: "https://github.com/ntgarcia/new-yyc",
     content: `
-# NewYYC
 
 ## 01 Intro
 
@@ -159,8 +158,6 @@ MRUHacks is a yearly hackathon hosted by Mount Royal University. I joined as Mar
     imageUrl: "/lyrics/cover.png",
     slug: "lyrics-analysis",
     content: `
-# Do I Care About Lyrics?
-
 ## 01 Background
 
 I love listening to music. I enjoy hearing beautiful melodies, exquisite sound design, and out-of-the-box production techniques that make music interesting.
@@ -235,8 +232,6 @@ Furthermore, I learned even more about how to analyse and visualise data to alig
     imageUrl: "/cail/cail-preview.png",
     slug: "cail",
     content: `
-# Canadian Alliance for Intergenerational Living
-
 ## 01 Intro
 
 For my 2023 Capstone Project, my group worked closely with the Canadian Alliance for Intergenerational Living to create an essential task tracker web app so that the organization can monitor student progress.
@@ -338,14 +333,14 @@ export default function ProjectPage() {
       <Navbar />
       <main className="min-h-screen pt-24 pb-20 px-4">
         <div className="max-w-3xl mx-auto">
-          <Link
+          {/* <Link
             href="/#works"
             className="font-mono text-muted hover:underline mb-8 inline-block clickable"
           >
             ← Back to projects
-          </Link>
+          </Link> */}
 
-          <div className="aspect-video relative w-full my-8 overflow-hidden rounded-sm">
+          {/* <div className="aspect-video relative w-full my-8 overflow-hidden rounded-sm">
             <Image
               src={project.imageUrl}
               alt={project.title}
@@ -353,7 +348,7 @@ export default function ProjectPage() {
               priority
               className="object-cover"
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h1 className="text-3xl sm:text-4xl font-mono text-primary">
