@@ -17,6 +17,7 @@ type Project = {
   tags: string[];
   type: ProjectType;
   slideshowImages?: string[]; // Optional array of images for slideshow
+  externalUrl?: string; // Optional external URL for linking to external sites
 };
 
 const mruhacksImages = [
@@ -42,6 +43,13 @@ const bolderImages = [
   "/design/bolder/ladies night.png",
   "/design/bolder/edge pricing.png",
   "/design/bolder/beats.png",
+];
+
+const chiasImages = [
+  "/design/chias/icon.png",
+  "/design/chias/logo.png",
+  "/design/chias/promo post.png",
+  "/design/chias/Instagram post - 30.png",
 ];
 
 // Reorganized projects - actual projects first, slideshows at the bottom
@@ -83,11 +91,30 @@ const projects: Project[] = [
     tags: ["Python", "Data"],
     type: "experiment",
   },
+  {
+    id: 5,
+    imageUrl: "/movieclub/movieclub.gif",
+    slug: "movie-club",
+    height: 300,
+    title: "Creamcheese Movie Club",
+    tags: ["Web Dev", "Front End"],
+    type: "experiment",
+    externalUrl: "https://www.creamcheese.club/",
+  },
+  {
+    id: 6,
+    imageUrl: "/design/mruhacks/mruhacksreel-1.gif",
+    slug: "",
+    height: 600,
+    title: "MRUHacks Reel",
+    tags: [],
+    type: "slideshow",
+  },
 
 
   // Slideshows at the bottom
   {
-    id: 5,
+    id: 7,
     imageUrl: "/mruhacks/cover.jpg",
     slug: "",
     height: 400,
@@ -97,7 +124,7 @@ const projects: Project[] = [
     slideshowImages: mruhacksImages,
   },
   {
-    id: 6,
+    id: 8,
     imageUrl: "/design/ryushinju/logo-full.png",
     slug: "",
     height: 350,
@@ -107,14 +134,24 @@ const projects: Project[] = [
     slideshowImages: ryushinjuImages,
   },
   {
-    id: 7,
+    id: 9,
     imageUrl: "/design/bolder/beats.png",
     slug: "",
-    height: 380,
+    height: 400,
     title: "Bolder Climbing",
     tags: [],
     type: "slideshow",
     slideshowImages: bolderImages,
+  },
+  {
+    id: 10,
+    imageUrl: "/design/chias/icon.png",
+    slug: "",
+    height: 400,
+    title: "Chia's Beads",
+    tags: [],
+    type: "slideshow",
+    slideshowImages: chiasImages,
   },
 ];
 
@@ -122,11 +159,9 @@ const projects: Project[] = [
 const projectCardVariants = {
   initial: { 
     scale: 1,
-    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
   },
   hover: { 
     scale: 1.02, 
-    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
   }
 };
 
@@ -164,30 +199,58 @@ const textItemVariants = {
 // Memoize the ProjectItem component to prevent unnecessary re-renders
 const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: { 
   project: Project, 
-  onHoverStart: (project: Project) => void, 
+  onHoverStart: (project: Project, e: any) => void, 
   onHoverEnd: () => void 
 }) => {
   // For slideshow type, render the image loop component but don't include hover effects
-  if (project.type === "slideshow" && project.slideshowImages) {
+  if (project.type === "slideshow") {
+    // If it has slideshowImages, use ImageLoop component
+    if (project.slideshowImages) {
+      return (
+        <div className="relative w-full rounded-lg overflow-hidden">
+          <ImageLoop 
+            images={project.slideshowImages} 
+            height={project.height || 400} 
+          />
+        </div>
+      );
+    }
+    // If it's a single image/gif slideshow (no slideshowImages array)
     return (
-      <div className="relative w-full rounded-lg overflow-hidden shadow-md">
-        <ImageLoop 
-          images={project.slideshowImages} 
-          height={project.height || 400} 
-        />
+      <div className="relative w-full rounded-lg overflow-hidden">
+        <div style={{ height: `${project.height || 400}px` }} className="relative">
+          {/* Use regular img tag for GIFs */}
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     );
   }
   
+  // Determine if we should use an external link
+  const LinkWrapper = ({ children }: { children: React.ReactNode }) => {
+    if (project.externalUrl) {
+      return (
+        <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="block">
+          {children}
+        </a>
+      );
+    }
+    return <Link href={`/projects/${project.slug}`} className="block">{children}</Link>;
+  };
+  
   // Regular project with link and hover effects
   return (
-    <Link href={`/projects/${project.slug}`} className="block">
+    <LinkWrapper>
       <motion.div
         className="relative w-full overflow-hidden rounded-lg"
         initial="initial"
         whileHover="hover"
         variants={projectCardVariants}
-        onHoverStart={() => onHoverStart(project)}
+        onHoverStart={(e) => onHoverStart(project, e)}
         onHoverEnd={onHoverEnd}
       >
         <div 
@@ -233,7 +296,7 @@ const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: {
           </motion.div>
         </div>
       </motion.div>
-    </Link>
+    </LinkWrapper>
   );
 });
 
@@ -241,37 +304,47 @@ const ProjectItem = memo(({ project, onHoverStart, onHoverEnd }: {
 ProjectItem.displayName = 'ProjectItem';
 
 export default function Works() {
-  // Simplified state for custom cursor
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Simplified approach with fewer refs
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoveredItem, setHoveredItem] = useState<Project | null>(null);
-  const mouseMoveThrottleRef = useRef<number>(0);
+  const isHoveringRef = useRef(false);
 
   // Track mouse position with throttling to reduce renders
   useEffect(() => {
+    let lastUpdateTime = 0;
+    
     const handleMouseMove = (e: MouseEvent) => {
-      // Throttle mouse move updates to avoid excessive re-renders
-      if (Date.now() - mouseMoveThrottleRef.current > 50) {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-        mouseMoveThrottleRef.current = Date.now();
+      // Only update cursor position if we're hovering over a project
+      if (isHoveringRef.current) {
+        const now = Date.now();
+        // Throttle updates to every 16ms (roughly 60fps)
+        if (now - lastUpdateTime > 16) {
+          setCursorPosition({ x: e.clientX, y: e.clientY });
+          lastUpdateTime = now;
+        }
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
-  // Get hover text based on project type
-  const getHoverText = (type: ProjectType) => {
-    switch (type) {
-      case "project": return "View Project";
-      case "experiment": return "See Experiment";
-      case "art": return "View Artwork";
-      case "tweet": return "Read Thoughts";
-      case "design": return "Explore Design";
-      case "slideshow": return ""; // Return empty string for slideshows
-      default: return "View Details";
-    }
-  };
+  // // Get hover text based on project type
+  // const getHoverText = (type: ProjectType, hasExternalUrl: boolean = false) => {
+  //   if (hasExternalUrl) return "Visit Site";
+    
+  //   switch (type) {
+  //     case "project": return "View Project";
+  //     case "experiment": return "See Experiment";
+  //     case "art": return "View Artwork";
+  //     case "tweet": return "Read Thoughts";
+  //     case "design": return "Explore Design";
+  //     case "slideshow": return ""; // Return empty string for slideshows
+  //     default: return "View Details";
+  //   }
+  // };
 
   // Group projects into columns for a masonry-like layout
   const getColumnProjects = () => {
@@ -293,11 +366,18 @@ export default function Works() {
   const columnProjects = getColumnProjects();
   
   // Handlers for hover events
-  const handleHoverStart = (project: Project) => {
+  const handleHoverStart = (project: Project, e: any) => {
+    isHoveringRef.current = true;
     setHoveredItem(project);
+    
+    // Get mouse position from the event parameter
+    if (e && 'clientX' in e && 'clientY' in e) {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    }
   };
   
   const handleHoverEnd = () => {
+    isHoveringRef.current = false;
     setHoveredItem(null);
   };
   
@@ -313,14 +393,14 @@ export default function Works() {
             className="fixed pointer-events-none z-50 flex items-center justify-center"
             style={{ 
               position: "fixed",
-              left: mousePosition.x,
-              top: mousePosition.y,
+              left: cursorPosition.x,
+              top: cursorPosition.y,
               transform: "translate(-50%, -50%)"
             }}
           >
-            <span className="bg-black text-white px-3 py-1 text-sm font-mono rounded-full whitespace-nowrap transform -translate-y-8">
-              {getHoverText(hoveredItem.type)}
-            </span>
+            {/* <span className="bg-black text-white px-3 py-1 text-sm font-mono rounded-full whitespace-nowrap transform -translate-y-8">
+              {getHoverText(hoveredItem.type, !!hoveredItem.externalUrl)}
+            </span> */}
           </motion.div>
         )}
       </AnimatePresence>
