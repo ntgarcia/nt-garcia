@@ -168,7 +168,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="https://github.com/nt-dot"
+              href="https://github.com/ntgarcia"
               className="hover:text-primary transition-colors inline-flex items-center space-x-2 py-2"
             >
               <GithubLogo size={20} />
@@ -177,7 +177,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="https://www.linkedin.com/in/nt-dot"
+              href="https://www.linkedin.com/in/ntns"
               className="hover:text-primary transition-colors inline-flex items-center space-x-2 py-2"
             >
               <LinkedinLogo size={20} />
