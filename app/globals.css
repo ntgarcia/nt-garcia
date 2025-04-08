@@ -1,106 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdf6ec;
-  --foreground: #2c1810;
-  --text-primary: #2e0f00;
-  --text-secondary: #4a332b;
-  --text-muted: #7d5f56;
-}
-
-.dark {
-  --background: #0e0e0e;
-  --foreground: #ececec;
-  --text-primary: #ececec;
-  --text-secondary: #ececec;
-  --text-muted: #8f8f8f;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* Only hide default cursor on devices with a mouse */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-
-  html,
-  body {
-    cursor: none !important;
-  }
-
-  /* Ensure cursor is visible during page transitions */
-  html.nprogress-busy * {
-    cursor: none !important;
-  }
-
-  /* Ensure links are properly styled for cursor */
-  a,
-  button,
-  [role="button"],
-  .clickable {
-    cursor: none !important;
-  }
+  --background: #ffffff;
+  --foreground: #000000;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
 }
 
 body {
   background: var(--background);
   color: var(--text-secondary);
-  font-family: var(--font-sans);
-}
-
-.custom-cursor {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  will-change: transform, width, height;
-  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.2s ease;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  /* Improve performance */
-  contain: layout style size;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-.cursor-hovering {
-  transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.clickable {
-  position: relative;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.clickable:hover {
-  opacity: 0.9;
+  font-family: var(--font-geist-sans);
 }
 
 a,
 button,
-.clickable {
-  transition: all 0.2s ease;
+[role="button"] {
+  transition: opacity 0.2s ease;
 }
 
 a:hover,
 button:hover {
-  opacity: 0.9;
-}
-
-.ascii-art {
-  font-family: var(--font-mono);
-  white-space: pre;
-  line-height: 1;
+  opacity: 0.8;
 }
 
 /* Footer styling */

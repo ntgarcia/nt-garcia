@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "./components/CustomCursor";
 import AnimatedLayout from "./components/AnimatedLayout";
 
 const geistSans = Geist({
@@ -10,14 +8,15 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Nathan Garcia",
   description: "Portfolio Website",
+  icons: {
+    icon: [
+      { url: '/n-logo.svg', media: '(prefers-color-scheme: dark)' },
+      { url: '/n-logo-dark.svg', media: '(prefers-color-scheme: light)' },
+    ]
+  },
   openGraph: {
     title: "Nathan Garcia",
     description: "Portfolio Website",
@@ -46,18 +45,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
-          <CustomCursor />
-          <AnimatedLayout>{children}</AnimatedLayout>
-        </ThemeProvider>
+    <html lang="en">
+      <body className={`${geistSans.variable} antialiased`}>
+        <AnimatedLayout>{children}</AnimatedLayout>
       </body>
     </html>
   );

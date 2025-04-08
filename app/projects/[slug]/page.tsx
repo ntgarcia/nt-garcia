@@ -38,7 +38,7 @@ const ProjectImage = ({
       width={1200}
       height={675}
       priority={true}
-      className="object-contain w-3/4 h-auto"
+      className="object-contain w-3/4 h-auto rounded-sm ring-1 ring-inset ring-black/10"
     />
   </div>
 );
@@ -56,7 +56,7 @@ const ImageGrid = ({
           src={image.src}
           alt={image.alt}
           fill
-          className="object-cover rounded-sm"
+          className="object-cover rounded-sm ring-1 ring-inset ring-black/10"
         />
       </div>
     ))}
@@ -332,141 +332,130 @@ export default function ProjectPage() {
     <div className="relative">
       <Navbar />
       <main className="min-h-screen pt-24 pb-20 px-4">
-        <div className="max-w-3xl mx-auto">
-          {/* <Link
-            href="/#works"
-            className="font-mono text-muted hover:underline mb-8 inline-block clickable"
-          >
-            ← Back to projects
-          </Link> */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            <Link href="/" className="text-muted hover:underline mb-8 inline-block clickable">
+              ← Back to projects
+            </Link>
 
-          {/* <div className="aspect-video relative w-full my-8 overflow-hidden rounded-sm">
-            <Image
-              src={project.imageUrl}
-              alt={project.title}
-              fill
-              priority
-              className="object-cover"
-            />
-          </div> */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <h1 className="text-3xl sm:text-4xl text-primary">
+                {project.title}
+              </h1>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-            <h1 className="text-3xl sm:text-4xl font-mono text-primary">
-              {project.title}
-            </h1>
+              {(project.liveUrl || project.githubUrl) && (
+                <div className="flex gap-3">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-primary text-background font-mono text-sm rounded-sm hover:opacity-90 transition-opacity clickable"
+                    >
+                      Visit Site
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 border border-primary font-mono text-sm rounded-sm hover:bg-primary/10 transition-colors clickable"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
 
-            {(project.liveUrl || project.githubUrl) && (
-              <div className="flex gap-3">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-primary text-background font-mono text-sm rounded-sm hover:opacity-90 transition-opacity clickable"
-                  >
-                    Visit Site
-                  </a>
-                )}
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 border border-primary font-mono text-sm rounded-sm hover:bg-primary/10 transition-colors clickable"
-                  >
-                    GitHub
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
+            <div className="flex flex-wrap gap-4 mb-8">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-1 text-xs border border-muted text-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 text-xs font-mono border border-muted text-muted"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+            <div className="font-mono space-y-4">
+              <p className="text-lg">{project.description}</p>
+              {segments.map((segment, index) => {
+                if (isImageGrid(segment)) {
+                  const images = segment
+                    .split("\n")
+                    .map((line) => {
+                      const match = line.match(
+                        /!\[(.*?)\]\((.*?)\)/
+                      );
+                      return match
+                        ? { alt: match[1], src: match[2] }
+                        : null;
+                    })
+                    .filter(Boolean);
 
-          <div className="font-mono space-y-4">
-            <p className="text-lg">{project.description}</p>
-            {segments.map((segment, index) => {
-              if (isImageGrid(segment)) {
-                const images = segment
-                  .split("\n")
-                  .map((line) => {
-                    const match = line.match(
-                      /!\[(.*?)\]\((.*?)\)/
-                    );
-                    return match
-                      ? { alt: match[1], src: match[2] }
-                      : null;
-                  })
-                  .filter(Boolean);
+                  return (
+                    <div
+                      key={index}
+                      className="grid grid-cols-2 gap-4 mt-10 mb-14 h-[600px]"
+                    >
+                      {images.map((img, imgIndex) => (
+                        <div
+                          key={imgIndex}
+                          className="relative h-full w-full"
+                        >
+                          <Image
+                            src={img!.src}
+                            alt={img!.alt}
+                            fill
+                            className="object-cover rounded-sm ring-1 ring-inset ring-black/10"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
 
                 return (
-                  <div
+                  <ReactMarkdown
                     key={index}
-                    className="grid grid-cols-2 gap-4 mt-10 mb-14 h-[600px]"
-                  >
-                    {images.map((img, imgIndex) => (
-                      <div
-                        key={imgIndex}
-                        className="relative h-full w-full"
-                      >
-                        <Image
-                          src={img!.src}
-                          alt={img!.alt}
-                          fill
-                          className="object-cover rounded-sm"
+                    components={{
+                      h1: ({ children }) => (
+                        <h1 className="text-3xl mt-14 mb-6">
+                          {children}
+                        </h1>
+                      ),
+                      h2: ({ children }) => (
+                        <h2 className="text-2xl mt-10 mb-4">
+                          {children}
+                        </h2>
+                      ),
+                      a: ({ children, href }) => (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary underline"
+                        >
+                          {children}
+                        </a>
+                      ),
+                      img: ({ src, alt }) => (
+                        <img
+                          src={src}
+                          alt={alt}
+                          className="mt-10 mb-14 w-full rounded-sm ring-1 ring-inset ring-black/10"
                         />
-                      </div>
-                    ))}
-                  </div>
+                      ),
+                    }}
+                  >
+                    {segment}
+                  </ReactMarkdown>
                 );
-              }
-
-              return (
-                <ReactMarkdown
-                  key={index}
-                  components={{
-                    h1: ({ children }) => (
-                      <h1 className="text-3xl mt-14 mb-6">
-                        {children}
-                      </h1>
-                    ),
-                    h2: ({ children }) => (
-                      <h2 className="text-2xl mt-10 mb-4">
-                        {children}
-                      </h2>
-                    ),
-                    a: ({ children, href }) => (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary underline"
-                      >
-                        {children}
-                      </a>
-                    ),
-                    img: ({ src, alt }) => (
-                      <img
-                        src={src}
-                        alt={alt}
-                        className="mt-10 mb-14 w-full"
-                      />
-                    ),
-                  }}
-                >
-                  {segment}
-                </ReactMarkdown>
-              );
-            })}
+              })}
+            </div>
           </div>
         </div>
       </main>

@@ -229,13 +229,12 @@ const ProjectItem = memo(({ project }: {
 }) => {
   // For slideshow type, render the image loop component but don't include hover effects
   if (project.type === "slideshow") {
-    // If it has slideshowImages, use ImageLoop component
+    // If it has slideshowImages, use ImageLoop component with a smaller fixed height
     if (project.slideshowImages) {
       return (
         <div className="relative w-full rounded-lg overflow-hidden">
           <ImageLoop 
             images={project.slideshowImages} 
-            height={project.height || 400} 
           />
         </div>
       );
@@ -243,12 +242,14 @@ const ProjectItem = memo(({ project }: {
     // If it's a single image/gif slideshow (no slideshowImages array)
     return (
       <div className="relative w-full rounded-lg overflow-hidden">
-        <div style={{ height: `${project.height || 400}px` }} className="relative">
-          {/* Use regular img tag for GIFs */}
+        {/* Removed fixed height style */}
+        <div className="relative">
+          {/* Use regular img tag for GIFs, ensure w-full h-auto */}
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover block rounded-sm ring-1 ring-inset ring-black/10"
+            loading="lazy"
           />
         </div>
       </div>
@@ -273,18 +274,15 @@ const ProjectItem = memo(({ project }: {
       <div className="relative w-full overflow-hidden rounded-lg">
         <div 
           className="relative w-full overflow-hidden" 
-          style={{ height: `${project.height || 300}px` }}
+          // Removed fixed height style
         >
-          <div className="absolute inset-0">
-            <Image
-              src={project.imageUrl}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority
-            />
-          </div>
+          {/* Switched to standard img tag with w-full h-auto */}
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-auto object-cover block rounded-sm ring-1 ring-inset ring-black/10"
+            loading="lazy"
+          />
           
           {/* Progressive blur effect using the CodePen technique */}
           <div 
@@ -326,14 +324,14 @@ const ProjectItem = memo(({ project }: {
             
             {/* Content container */}
             <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-              <h3 className="text-lg font-mono mb-2">
+              <h3 className="text-lg text-white mb-2">
                 {project.title}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-2 py-1 text-xs font-mono bg-white/20 backdrop-blur-sm rounded-sm"
+                    className="px-2 py-1 text-xs bg-white/20 backdrop-blur-sm rounded-sm"
                   >
                     {tag}
                   </span>
@@ -358,9 +356,10 @@ export default function Works() {
     const columns = {
       col1: [] as Project[],
       col2: [] as Project[],
-      col3: [] as Project[]
+      col3: [] as Project[] // Re-added col3
     };
     
+    // Reverted logic to distribute into 3 columns
     projects.forEach((project, index) => {
       if (index % 3 === 0) columns.col1.push(project);
       else if (index % 3 === 1) columns.col2.push(project);
@@ -374,7 +373,9 @@ export default function Works() {
   
   return (
     <section id="works" className=" py-10 md:py-20 px-4 md:px-8 relative">
-      <div className="max-w-7xl mx-auto">
+      {/* Further reduced max-width to make columns narrower */}
+      <div className="max-w-5xl mx-auto">
+        {/* Reverted grid to 3 columns on large screens: lg:grid-cols-3 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Column 1 */}
           <div className="flex flex-col gap-6">
@@ -396,7 +397,7 @@ export default function Works() {
             ))}
           </div>
           
-          {/* Column 3 - Only visible on lg screens and up */}
+          {/* Column 3 - Re-added, only visible on lg screens and up */}
           <div className="hidden lg:flex flex-col gap-6">
             {columnProjects.col3.map((project) => (
               <ProjectItem 
@@ -406,7 +407,7 @@ export default function Works() {
             ))}
           </div>
           
-          {/* For mobile, show all projects in a single column */}
+          {/* For mobile, show col2 and col3 items below col1 */}
           <div className="md:hidden flex flex-col gap-6">
             {[...columnProjects.col2, ...columnProjects.col3].map((project) => (
               <ProjectItem 

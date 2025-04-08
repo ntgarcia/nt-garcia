@@ -6,13 +6,13 @@ export default function NowPage() {
       <Navbar />
       <main className="min-h-screen pt-24 pb-20">
         <div className="px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="max-w-3xl">
-              <h1 className="text-3xl sm:text-4xl font-mono text-primary mb-8">
+              <h1 className="text-3xl sm:text-4xl text-primary mb-8">
                 /now
               </h1>
 
-              <div className="space-y-8 font-mono">
+              <div className="space-y-8">
                 <section>
                   <h2 className="text-xl text-primary mb-4">
                     What I'm doing now

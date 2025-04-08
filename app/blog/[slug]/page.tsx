@@ -14,6 +14,7 @@ type BlogPost = {
   content: string;
   tags: string[];
   slug: string;
+  readingTime: string;
 };
 
 const blogPosts: BlogPost[] = [
@@ -28,6 +29,7 @@ const blogPosts: BlogPost[] = [
     `,
     tags: ["Whatsup"],
     slug: "hello-world",
+    readingTime: "5 minutes",
   },
 ];
 
@@ -45,59 +47,56 @@ export default function BlogPostPage() {
     <div className="relative">
       <Navbar />
       <main className="min-h-screen pt-24 pb-20 px-4">
-        <div className="max-w-3xl mx-auto">
-          <Link
-            href="/blog"
-            className="font-mono text-muted hover:underline mb-8 inline-block clickable"
-          >
-            ← Back to blog
-          </Link>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            <Link href="/blog" className="text-muted hover:underline mb-8 inline-block clickable">
+              ← Back to Blog
+            </Link>
+            
+            <div className="mb-2 text-muted text-sm">
+              {post.date} • {post.readingTime}
+            </div>
+            <h1 className="text-4xl text-primary mb-6">
+              {post.title}
+            </h1>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {post.tags.map((tag) => (
+                <span 
+                  key={tag} 
+                  className="px-2 py-1 text-xs border border-muted text-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <div className="space-y-4 botanical-border pt-8">
+              <p>{post.excerpt}</p>
 
-          <div className="mb-2 font-mono text-muted text-sm">
-            {post.date}
-          </div>
-
-          <h1 className="text-4xl font-mono text-primary mb-6">
-            {post.title}
-          </h1>
-
-          <div className="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 text-xs font-mono border border-muted text-muted"
+              <ReactMarkdown
+                components={{
+                  h1: ({ children }) => (
+                    <h1 className="text-3xl mt-14 mb-6">
+                      {children}
+                    </h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="text-2xl mt-10 mb-4">
+                      {children}
+                    </h2>
+                  ),
+                  img: ({ src, alt }) => (
+                    <img
+                      src={src}
+                      alt={alt}
+                      className="mb-14 w-full rounded-sm ring-1 ring-inset ring-black/10"
+                    />
+                  ),
+                }}
               >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="font-mono space-y-4 botanical-border pt-8">
-            <p>{post.excerpt}</p>
-
-            <ReactMarkdown
-              components={{
-                h1: ({ children }) => (
-                  <h1 className="text-3xl mt-14 mb-6">
-                    {children}
-                  </h1>
-                ),
-                h2: ({ children }) => (
-                  <h2 className="text-2xl mt-10 mb-4">
-                    {children}
-                  </h2>
-                ),
-                img: ({ src, alt }) => (
-                  <img
-                    src={src}
-                    alt={alt}
-                    className="mb-14 w-full"
-                  />
-                ),
-              }}
-            >
-              {post.content}
-            </ReactMarkdown>
+                {post.content}
+              </ReactMarkdown>
+            </div>
           </div>
         </div>
       </main>

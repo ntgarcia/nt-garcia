@@ -10,7 +10,7 @@ interface AvatarProps {
 export default function Avatar({ size = 80, className = '' }: AvatarProps) {
   return (
     <div 
-      className={`relative rounded-full overflow-hidden border-2 border-primary ${className}`}
+      className={`relative rounded-xl overflow-hidden ring-1 ring-inset ring-black/10 ${className}`}
       style={{ 
         width: size, 
         height: size,
@@ -19,7 +19,7 @@ export default function Avatar({ size = 80, className = '' }: AvatarProps) {
       }}
     >
       <Image
-        src="/profile.jpg"
+        src="/me-2.png"
         alt="Nathan's profile picture"
         fill
         sizes={`${size}px`}

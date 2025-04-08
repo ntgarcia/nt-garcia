@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeSelector from "./ThemeSelector";
 import {
   GithubLogo,
   LinkedinLogo,
@@ -45,29 +44,16 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-background/80 backdrop-blur-sm`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-200 w-fit px-4 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200`}
     >
-      <div className="flex items-center justify-between px-4 md:px-8 h-16 max-w-7xl mx-auto">
+      <div className="flex space-x-6 items-center justify-between h-12 font-medium">
         <Link
           href="/"
-          className="font-mono text-sm hover:text-primary transition-colors clickable"
         >
-          NT（• ˕ •マ.ᐟ
+          <img src="/n-logo.svg" alt="Logo" className="h-4 w-auto fill-black" />
         </Link>
 
-        <button
-          className="md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="space-y-1.5">
-            <span className="block w-6 h-0.5 bg-foreground"></span>
-            <span className="block w-6 h-0.5 bg-foreground"></span>
-            <span className="block w-6 h-0.5 bg-foreground"></span>
-          </div>
-        </button>
-
-        <ul className="hidden md:flex space-x-6 font-mono items-center text-sm">
+        <ul className="flex space-x-6 items-center text-sm">
           <li>
             <Link
               href={isHomePage ? "#works" : "/#works"}
@@ -95,24 +81,13 @@ export default function Navbar() {
               /now
             </Link>
           </li>
-          {/* <li>
-            <Link
-              href={isHomePage ? "#contact" : "/#contact"}
-              className="hover:text-primary transition-colors"
-              onClick={(e) =>
-                handleScrollToSection(e, "#contact")
-              }
-            >
-              /contact
-            </Link>
-          </li> */}
-          <div className="flex space-x-2">
+          {/* <div className="flex space-x-2">
             <li>
               <Link
                 href="https://github.com/nt-dot"
                 className="hover:text-primary transition-colors"
               >
-                <GithubLogo size={24} />
+                <GithubLogo size={20} />
               </Link>
             </li>
             <li>
@@ -120,23 +95,20 @@ export default function Navbar() {
                 href="https://www.linkedin.com/in/nt-dot"
                 className="hover:text-primary transition-colors"
               >
-                <LinkedinLogo size={24} />
+                <LinkedinLogo size={20} />
               </Link>
             </li>
-          </div>
-          <li>
-            <ThemeSelector />
-          </li>
+          </div> */}
         </ul>
       </div>
 
       {/* Mobile menu */}
-      <div
-        className={`md:hidden absolute w-full bg-background transition-all duration-300 overflow-hidden ${
+      {/* <div
+        className={`md:hidden absolute left-0 right-0 bg-background transition-all duration-300 overflow-hidden rounded-b-2xl border border-white/20 ${
           menuOpen ? "max-h-100 py-4" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col space-y-4 px-4 font-mono text-sm max-w-7xl mx-auto">
+        <ul className="flex flex-col space-y-4 px-4 text-sm">
           <li>
             <Link
               href={isHomePage ? "#works" : "/#works"}
@@ -184,12 +156,8 @@ export default function Navbar() {
               <span>LinkedIn</span>
             </Link>
           </li>
-
-          <li className="py-2">
-            <ThemeSelector isMobile={true} />
-          </li>
         </ul>
-      </div>
+      </div> */}
     </nav>
   );
 }
