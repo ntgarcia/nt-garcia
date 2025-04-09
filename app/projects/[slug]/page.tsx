@@ -339,7 +339,7 @@ export default function ProjectPage() {
             </Link>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <h1 className="text-3xl sm:text-4xl text-primary">
+              <h1 className="text-3xl sm:text-4xl text-black">
                 {project.title}
               </h1>
 
@@ -350,7 +350,7 @@ export default function ProjectPage() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 bg-primary text-background font-mono text-sm rounded-sm hover:opacity-90 transition-opacity clickable"
+                      className="px-4 py-2 bg-black text-white font-medium text-sm rounded-sm hover:opacity-90 transition-opacity clickable"
                     >
                       Visit Site
                     </a>
@@ -360,7 +360,7 @@ export default function ProjectPage() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 border border-primary font-mono text-sm rounded-sm hover:bg-primary/10 transition-colors clickable"
+                      className="px-4 py-2 border border-black/20 font-medium text-sm rounded-sm hover:bg-primary/10 transition-colors clickable"
                     >
                       GitHub
                     </a>
@@ -369,19 +369,19 @@ export default function ProjectPage() {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-4 mb-8">
+            <div className="flex flex-wrap gap-2 mb-8">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 text-xs border border-muted text-muted"
+                  className="px-2 py-1 text-xs border border-black/20 rounded-sm text-muted"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <div className="font-mono space-y-4">
-              <p className="text-lg">{project.description}</p>
+            <div className="space-y-4">
+              <p className="text-lg text-black">{project.description}</p>
               {segments.map((segment, index) => {
                 if (isImageGrid(segment)) {
                   const images = segment
@@ -423,12 +423,12 @@ export default function ProjectPage() {
                     key={index}
                     components={{
                       h1: ({ children }) => (
-                        <h1 className="text-3xl mt-14 mb-6">
+                        <h1 className="text-xl text-black mt-14 mb-6">
                           {children}
                         </h1>
                       ),
                       h2: ({ children }) => (
-                        <h2 className="text-2xl mt-10 mb-4">
+                        <h2 className="text-xl text-black mt-10 mb-4">
                           {children}
                         </h2>
                       ),
@@ -437,7 +437,7 @@ export default function ProjectPage() {
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary underline"
+                          className="text-black underline"
                         >
                           {children}
                         </a>

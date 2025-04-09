@@ -13,11 +13,9 @@ export default function Header() {
         <div className="flex flex-row items-center gap-3 sm:gap-6 mb-3">
           <Avatar size={80} />
           <div className="flex flex-col gap-1">
-            <h1 className="text-lg sm:text-2xl font-medium">Hi, I'm Nathan👋</h1>
+            <h1 className="text-lg sm:text-2xl text-black font-medium">Hi, I'm Nathan👋</h1>
             <p className="text-sm sm:text-lg">
-              I'm a Calgary-based designer & programmer.
-              <br />
-              Studying Computer Info Systems @ Mount Royal University.
+              I'm a Calgary-based designer & programmer studying Computer Info Systems @ Mount Royal University.
             </p>
           </div>
         </div>
@@ -27,7 +25,7 @@ export default function Header() {
             href="https://drive.google.com/file/d/1S1gZkTC1wIlg8kr2Q_BnHoDhKTeqVEHW/view"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex border-1 bg-black border-black/80 items-center justify-center rounded-md text-md text-white font-medium h-10 px-4 py-2"
+            className="inline-flex border-1 bg-black border-black/80 items-center justify-center rounded-md text-sm sm:text-md text-white font-medium h-10 px-4 py-2"
           >
             View Resume
             <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -36,7 +34,7 @@ export default function Header() {
             href="https://github.com/ntgarcia"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex border-1 border-gray-200 items-center justify-center rounded-md text-md font-medium h-10 px-4 py-2"
+            className="inline-flex border-1 border-gray-200 items-center justify-center rounded-md text-sm sm:text-md font-medium h-10 px-4 py-2"
           >
             Github
             <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -45,7 +43,7 @@ export default function Header() {
             href="https://www.linkedin.com/in/ntns"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex border-1 border-gray-200 items-center justify-center rounded-md text-md font-medium h-10 px-4 py-2"
+            className="inline-flex border-1 border-gray-200 items-center justify-center rounded-md text-sm sm:text-md font-medium h-10 px-4 py-2"
           >
             LinkedIn
             <ArrowUpRight className="ml-2 h-4 w-4" />

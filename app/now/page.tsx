@@ -8,7 +8,7 @@ export default function NowPage() {
         <div className="px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="max-w-3xl">
-              <h1 className="text-3xl sm:text-4xl text-primary mb-8">
+              <h1 className="text-3xl sm:text-4xl text-black mb-8">
                 /now
               </h1>
 
@@ -27,8 +27,8 @@ export default function NowPage() {
                 </section>
 
                 <section>
-                  <h3 className="text-lg text-primary mb-2">
-                    🎓 Education
+                  <h3 className="text-lg text-black mb-2">
+                    Education
                   </h3>
                   <p>
                     After graduating from SAIT with a diploma
@@ -41,8 +41,8 @@ export default function NowPage() {
                 </section>
 
                 <section>
-                  <h3 className="text-lg text-primary mb-2">
-                    💻 Work
+                  <h3 className="text-lg text-black mb-2">
+                    Work
                   </h3>
                   <p>
                     As of January 2025, my focus aside from my
@@ -56,8 +56,8 @@ export default function NowPage() {
                 </section>
 
                 <section>
-                  <h3 className="text-lg text-primary mb-2">
-                    🌱 Growth
+                    <h3 className="text-lg text-black mb-2">
+                    Growth
                   </h3>
                   <p>
                     Outside of this, I've also been enjoying:
@@ -83,7 +83,7 @@ export default function NowPage() {
                       href="https://nownownow.com/about"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary underline"
+                      className="text-black underline"
                     >
                       nownownow.com
                     </a>

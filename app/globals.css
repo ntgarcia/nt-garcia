@@ -4,8 +4,8 @@
   --background: #ffffff;
   --foreground: #000000;
   --text-primary: #000000;
-  --text-secondary: #333333;
-  --text-muted: #666666;
+  --text-secondary: #666666;
+  --text-muted: #333333;
 }
 
 body {

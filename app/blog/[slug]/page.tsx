@@ -22,10 +22,10 @@ const blogPosts: BlogPost[] = [
     id: 1,
     title: "Hello, World!",
     date: "2025-03-10",
-    excerpt: "Welcome to my blog!!!!",
+    excerpt: "",
     content: `
-  # Hello
-  ## World
+  # Hello World
+  Welcome to my blog!!!!
     `,
     tags: ["Whatsup"],
     slug: "hello-world",
@@ -56,10 +56,10 @@ export default function BlogPostPage() {
             <div className="mb-2 text-muted text-sm">
               {post.date} • {post.readingTime}
             </div>
-            <h1 className="text-4xl text-primary mb-6">
+            <h1 className="text-4xl text-black mb-6">
               {post.title}
             </h1>
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span 
                   key={tag} 
@@ -70,18 +70,18 @@ export default function BlogPostPage() {
               ))}
             </div>
             
-            <div className="space-y-4 botanical-border pt-8">
-              <p>{post.excerpt}</p>
+            <div className="space-y-4">
+              {/* <p>{post.excerpt}</p> */}
 
               <ReactMarkdown
                 components={{
                   h1: ({ children }) => (
-                    <h1 className="text-3xl mt-14 mb-6">
+                    <h1 className="text-3xl mt-14 mb-6 text-black">
                       {children}
                     </h1>
                   ),
                   h2: ({ children }) => (
-                    <h2 className="text-2xl mt-10 mb-4">
+                    <h2 className="text-2xl mt-10 mb-4 text-black">
                       {children}
                     </h2>
                   ),

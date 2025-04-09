@@ -44,7 +44,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-200 w-fit px-4 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-200 w-fit px-6 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 text-muted`}
     >
       <div className="flex space-x-6 items-center justify-between h-12 font-medium">
         <Link
