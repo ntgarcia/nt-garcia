@@ -27,7 +27,7 @@ export default function Header() {
             rel="noopener noreferrer"
             className="inline-flex border-1 bg-black border-black/80 items-center justify-center rounded-md text-sm sm:text-md text-white font-medium h-10 px-4 py-2"
           >
-            View Resume
+            Resume
             <ArrowUpRight className="ml-2 h-4 w-4" />
           </a>
           <a
