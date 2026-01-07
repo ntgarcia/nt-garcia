@@ -14,7 +14,9 @@ export default function Footer() {
         minute: "numeric",
         hour12: true,
       };
-      setCurrentTime(now.toLocaleTimeString("en-US", options));
+      setCurrentTime(
+        now.toLocaleTimeString("en-US", options)
+      );
     };
 
     updateTime();
@@ -24,37 +26,33 @@ export default function Footer() {
 
   return (
     <footer className="py-12 px-4 md:px-8">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-          <div>
-            <h3 className="text-2xl mb-4">
-              Get in Touch!
-            </h3>
-            <ul className="space-y-2">
-              <li>
-                <span className="opacity-70">Email:</span>{" "}
-                <a
-                  href="mailto:ngarc101@mtroyal.com"
-                  className="hover:underline transition-colors"
-                >
-                  ngarc101@mtroyal.com
-                </a>
-              </li>
-              <li>
-                <span className="opacity-70">
-                  Location:
-                </span>{" "}
-                Calgary, Alberta
-              </li>
-              <li>
-                <span className="opacity-70">
-                  Timezone:
-                </span>{" "}
-                {currentTime}
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div className="max-w-5xl mx-auto flex gap-6">
+        {/* <span>
+          <span className="opacity-70">Email:</span>{" "}
+          <a
+            href="mailto:naninf.work@gmail.com"
+            className="hover:underline transition-colors"
+          >
+            naninf.work@gmail.com
+          </a>
+        </span>
+        <span>
+          <span className="opacity-70">IG:</span>{" "}
+          <a
+            href="https://www.instagram.com/nan____inf/"
+            className="hover:underline transition-colors"
+          >
+            nan____inf
+          </a>
+        </span> */}
+        {/* <span>
+          <span className="opacity-70">Location:</span>{" "}
+          Calgary, Alberta
+        </span>
+        <span>
+          <span className="opacity-70">Timezone:</span>{" "}
+          {currentTime}
+        </span> */}
       </div>
     </footer>
   );
