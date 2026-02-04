@@ -10,7 +10,7 @@
 
 body {
   background: var(--background);
-  color: var(--text-secondary);
+  color: var(--foreground);
   font-family: var(--font-geist-sans);
 }
 
@@ -22,31 +22,5 @@ button,
 
 a:hover,
 button:hover {
-  opacity: 0.8;
-}
-
-/* Footer styling */
-footer#contact {
-  position: relative;
-  margin-top: 10rem;
-  box-shadow: 0 -10px 30px -15px rgba(0, 0, 0, 0.1);
-}
-
-footer#contact::before {
-  content: "";
-  position: absolute;
-  top: -3rem;
-  left: 0;
-  right: 0;
-  height: 3rem;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0, 0, 0, 0.05)
-  );
-  pointer-events: none;
-}
-
-footer#contact svg path {
-  fill: var(--foreground);
+  opacity: 0.6;
 }

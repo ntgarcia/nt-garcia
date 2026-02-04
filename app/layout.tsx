@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import AnimatedLayout from "./components/AnimatedLayout";
+import StickyHeader from "./components/StickyHeader";
+import StickyFooter from "./components/StickyFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +15,15 @@ export const metadata: Metadata = {
   description: "Portfolio Website",
   icons: {
     icon: [
-      { url: '/n-logo.svg', media: '(prefers-color-scheme: dark)' },
-      { url: '/n-logo-dark.svg', media: '(prefers-color-scheme: light)' },
-    ]
+      {
+        url: "/n-logo.svg",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/n-logo-dark.svg",
+        media: "(prefers-color-scheme: light)",
+      },
+    ],
   },
   openGraph: {
     title: "Nathan Garcia",
@@ -47,7 +55,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} antialiased`}>
+        <StickyHeader />
         <AnimatedLayout>{children}</AnimatedLayout>
+        <StickyFooter />
       </body>
     </html>
   );
