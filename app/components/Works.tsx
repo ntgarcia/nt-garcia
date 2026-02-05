@@ -47,7 +47,7 @@ const isoftsuImages = [
 const projects: Project[] = [
   {
     id: 1,
-    imageUrl: "/design/niteharts/isoskrill.gif",
+    imageUrl: "/design/niteharts/00.jpg",
     slug: "niteharts-merch",
     title: "Niteharts Merch",
     tags: ["2025", "Merch", "Design"],
@@ -94,6 +94,14 @@ const projects: Project[] = [
     slug: "oomfrave6",
     title: "Oomfrave6 Flyer",
     tags: ["2025", "Design", "Flyer"],
+    type: "slideshow",
+  },
+  {
+    id: 8,
+    imageUrl: "/design/twin/twin.jpg",
+    slug: "twin",
+    title: "Twin Diplomacy Flyer",
+    tags: ["2026", "Design", "Flyer"],
     type: "slideshow",
   },
   {

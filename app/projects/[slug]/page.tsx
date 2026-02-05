@@ -4,19 +4,24 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 type Project = {
   id: number;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   tags: string[];
   imageUrl: string;
   slug: string;
   slideshowImages?: string[];
   imageFolder?: string; // Path to folder containing images (e.g., "/design/niteharts")
-  client?: string;
+  client?: ProjectClient;
   year?: string;
+};
+
+type ProjectClient = {
+  name: string;
+  url: string;
 };
 
 // Import projects from Works component - matching structure
@@ -51,9 +56,22 @@ const projects: Project[] = [
     title: "Niteharts Merch",
     tags: ["2025", "Merch", "Design"],
     imageFolder: "/design/niteharts", // Automatically loads all images from this folder
-    description:
-      "Designed the majority of the merch for Niteharts music festival based in San Diego, CA. Worked closely with their creative director Zach Okami to build off of the branding done in collaboration with Studio Pending. We wanted to make designs easily associated with both the aesthetic of the festival itself as well as with the two headliners of the festival, ISOxo and Knock2.",
-    client: "Niteharts",
+    description: (
+      <>
+        Designed the majority of the merch for Niteharts
+        music festival based in San Diego, CA. Worked
+        closely with their creative director Zach Okami to
+        build off of the branding done in collaboration with
+        Studio Pending. We wanted to make designs easily
+        associated with both the aesthetic of the festival
+        itself as well as with the two headliners of the
+        festival, ISOxo and Knock2.
+      </>
+    ),
+    client: {
+      name: "Niteharts",
+      url: "https://www.instagram.com/niteharts/",
+    },
     year: "2025",
   },
   {
@@ -64,7 +82,7 @@ const projects: Project[] = [
     tags: ["2024", "Design", "Flyer"],
     imageFolder: "/design/k2-ny",
     description:
-      "Visual and graphic design for Knock2's show run for 2026 (Continuously updated).",
+      "Working alongside Zach Okami and Paul Kim to create the visual and graphic design for Knock2's show run for 2026 (Continuously updated).",
     year: "2025 - Present",
   },
   {
@@ -110,6 +128,16 @@ const projects: Project[] = [
     year: "2024",
   },
   {
+    id: 8,
+    imageUrl: "/design/twin/twin.jpg",
+    slug: "twin",
+    title: "Twin Diplomacy Flyer",
+    tags: ["2026", "Design", "Flyer"],
+    description:
+      "Flyer design for Twin Diplomacy 2026 Tour.",
+    year: "2026",
+  },
+  {
     id: 9,
     imageUrl: "/design/ryushinju/logo-full.png",
     slug: "ryushinju",
@@ -125,10 +153,10 @@ const projects: Project[] = [
     imageUrl: "/design/etc/eoyf.jpg",
     slug: "eoyf",
     title: "Expression On Your Face Concept",
-    tags: ["2024", "Design", "Concept"],
+    tags: ["2025", "Design", "Concept"],
     description:
       "Visual concept based on Mechatok, Ecco2k, Bladee - Expression On Your Face",
-    year: "2024",
+    year: "2025",
   },
 ];
 
@@ -228,7 +256,15 @@ export default function ProjectPage() {
                     <div className="text-xl font-medium text-black tracking-tight">
                       Client:{" "}
                       <span className="underline">
-                        {project.client}
+                        {project.client && (
+                          <a
+                            href={project.client.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {project.client.name}
+                          </a>
+                        )}
                       </span>
                     </div>
                   )}
