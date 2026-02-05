@@ -30,19 +30,11 @@ export const metadata: Metadata = {
     description: "Portfolio Website",
     url: "https://www.ntns.me/",
     type: "website",
-    images: [
-      {
-        url: "https://opengraph.b-cdn.net/production/images/10f8cc86-d7d5-4f1a-97d9-13fd052b1f4a.png?token=0uCnjxNUDHz83eNyTxuvECqskQJ19_zCLmr4jPQyY5Q&height=735&width=1200&expires=33278011415",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nathan Garcia",
     description: "Portfolio Website",
-    images: [
-      "https://opengraph.b-cdn.net/production/images/10f8cc86-d7d5-4f1a-97d9-13fd052b1f4a.png?token=0uCnjxNUDHz83eNyTxuvECqskQJ19_zCLmr4jPQyY5Q&height=735&width=1200&expires=33278011415",
-    ],
   },
   metadataBase: new URL("https://www.ntns.me"),
 };
