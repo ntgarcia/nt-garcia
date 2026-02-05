@@ -32,7 +32,8 @@ export default function StickyHeader() {
                 LinkedIn
               </a>
               <a
-                href=""
+                href="https://drive.google.com/file/d/1GEjnKFfFki7U3aW8z9r49nArUAGhhl8P/view?usp=sharing"
+                target="_blank"
                 className="font-medium tracking-tight underline transition-opacity hover:opacity-70"
               >
                 CV

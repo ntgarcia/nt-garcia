@@ -68,7 +68,29 @@ const projects: Project[] = [
     year: "2025 - Present",
   },
   {
-    id: 3,
+    id: 4,
+    imageUrl: "/design/mruhacks/mruhacksreel-1.gif",
+    slug: "mruhacks2025",
+    title: "MRUHacks 2025",
+    tags: ["2025", "Marketing", "Design"],
+    imageFolder: "/design/mruhacks", // Automatically loads all images from this folder
+    description:
+      "As the marketing lead for MRUHacks 2025, I helmed the branding, design, and overall social media presence for the hackathon. Along with my team consisting of our graphic designer Jashan Singh, social media strategist Meagan Valderrama, and copywriter Sage Odesanya, we delivered a fresh new look to the event.",
+    year: "2025",
+  },
+  {
+    id: 5,
+    imageUrl: "/design/k2-sf/knock2-sf-flyer-alt.jpg",
+    slug: "knock2-sf-flyer",
+    title: "Knock2 SF Flyer",
+    tags: ["2024", "Design", "Flyer"],
+    imageFolder: "/design/k2-sf", // Automatically loads all images from this folder
+    description:
+      "Event flyer and merch design for Knock2's San Francisco Block Party show.",
+    year: "2025",
+  },
+  {
+    id: 6,
     imageUrl: "/design/isoxo/iso_ftsu_1.jpg",
     slug: "isoxo-ftsu-title",
     title: "ISOxo - FTSU Title",
@@ -79,7 +101,7 @@ const projects: Project[] = [
     year: "2025",
   },
   {
-    id: 5,
+    id: 7,
     imageUrl: "/design/etc/oomfrave6.jpg",
     slug: "oomfrave6",
     title: "Oomfrave6 Flyer",
@@ -88,18 +110,18 @@ const projects: Project[] = [
     year: "2024",
   },
   {
-    id: 4,
-    imageUrl: "/design/knock2/knock2-sf-flyer-alt.jpg",
-    slug: "knock2-sf-flyer",
-    title: "Knock2 SF Flyer",
-    tags: ["2024", "Design", "Flyer"],
-    imageFolder: "/design/knock2", // Automatically loads all images from this folder
+    id: 9,
+    imageUrl: "/design/ryushinju/logo-full.png",
+    slug: "ryushinju",
+    title: "Ryushinju",
+    tags: ["2025", "Logo", "Concept"],
+    imageFolder: "/design/ryushinju", // Automatically loads all images from this folder
     description:
-      "Event flyer design for Knock2's San Francisco show.",
-    year: "2024",
+      "Logo and branding design concept for Ryushinju.",
+    year: "2025",
   },
   {
-    id: 7,
+    id: 11,
     imageUrl: "/design/etc/eoyf.jpg",
     slug: "eoyf",
     title: "Expression On Your Face Concept",
@@ -234,13 +256,13 @@ export default function ProjectPage() {
         {!loading && (
           <div className="px-4 md:px-8">
             <div className="max-w-7xl mx-auto">
-              <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-4">
+              <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
                 {allImages.map((image, index) => (
                   <div
                     key={index}
                     className="flex flex-col"
                   >
-                    <div className="relative w-full bg-gray-100 overflow-hidden">
+                    <div className="relative w-full overflow-hidden">
                       <img
                         src={image}
                         alt={`${project.title} - Image ${
