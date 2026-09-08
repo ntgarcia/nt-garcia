@@ -4,9 +4,9 @@ export default function StickyFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border px-6 md:px-10 py-12 md:py-16">
-      <div className="max-w-[1000px] mx-auto text-xs text-muted">
-        © {currentYear} Nathan Garcia
+    <footer className="fixed bottom-0 left-0 right-0 z-50 px-4 md:px-13 py-4 md:py-6">
+      <div className="mx-auto text-xl font-medium tracking-tight text-black mix-blend-difference">
+        ©{currentYear} Nathan Garcia
       </div>
     </footer>
   );

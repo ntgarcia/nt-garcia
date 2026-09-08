@@ -7,19 +7,19 @@ const ProjectRow = ({ project }: { project: Project }) => {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block py-12 md:py-16 border-t border-divider first:border-t-0"
+      className="group block py-6 border-t border-black/10"
     >
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
         <div className="flex items-baseline gap-4">
-          <span className="text-sm italic text-secondary">
+          <span className="text-sm uppercase tracking-wide text-[#9c9c9c]">
             {formatDate(project.date)}
           </span>
-          <h3 className="text-2xl md:text-[28px] font-bold text-black group-hover:opacity-60 transition-opacity">
+          <h3 className="text-xl md:text-2xl font-medium tracking-tight text-black group-hover:opacity-60 transition-opacity">
             {project.title}
           </h3>
         </div>
         {project.tags.length > 0 && (
-          <p className="text-sm italic text-secondary">
+          <p className="text-sm uppercase tracking-wide text-[#9c9c9c]">
             {project.tags.join(", ")}
           </p>
         )}
@@ -44,10 +44,12 @@ export default function Works() {
   const projects = sortedProjects();
 
   return (
-    <section id="works">
-      {projects.map((project) => (
-        <ProjectRow key={project.id} project={project} />
-      ))}
+    <section id="works" className="py-6">
+      <div className="border-b border-black/10">
+        {projects.map((project) => (
+          <ProjectRow key={project.id} project={project} />
+        ))}
+      </div>
     </section>
   );
 }

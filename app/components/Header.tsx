@@ -6,9 +6,9 @@ export default function Header() {
       <img
         src="/signature.png"
         alt="Nathan Garcia"
-        className="w-full max-w-md md:max-w-lg h-auto mb-5 -ml-1"
+        className="w-full max-w-md md:max-w-lg h-auto mb-6 -ml-1"
       />
-      <p className="max-w-2xl font-serif text-base md:text-lg leading-[1.7] text-black">
+      <p className="max-w-2xl text-lg md:text-xl tracking-tight leading-relaxed text-[#333333]">
         Nathan Garcia is a graphic designer based in Calgary, Alberta,
         working across brand identity, event flyers, and merch design for
         artists, festivals, and student organizations. Currently studying
@@ -18,7 +18,7 @@ export default function Header() {
           href="https://www.mruhacks.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline"
+          className="underline"
         >
           MRUHacks
         </a>
