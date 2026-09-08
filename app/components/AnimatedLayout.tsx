@@ -10,11 +10,6 @@ export default function AnimatedLayout({
 }) {
   const pathname = usePathname();
 
-  console.log(
-    "AnimatedLayout rendering with pathname:",
-    pathname
-  );
-
   return (
     <AnimatePresence mode="wait">
       <motion.div
