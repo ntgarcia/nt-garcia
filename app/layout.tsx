@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AnimatedLayout from "./components/AnimatedLayout";
 import StickyHeader from "./components/StickyHeader";
 import StickyFooter from "./components/StickyFooter";
+import { HeroLogoProvider } from "./components/HeroLogoProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -37,10 +38,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased`}>
-        <StickyHeader />
-        <AnimatedLayout>{children}</AnimatedLayout>
-        <StickyFooter />
+      <body className={`${geistMono.variable} antialiased`}>
+        <HeroLogoProvider>
+          <StickyHeader />
+          <AnimatedLayout>{children}</AnimatedLayout>
+          <StickyFooter />
+        </HeroLogoProvider>
       </body>
     </html>
   );

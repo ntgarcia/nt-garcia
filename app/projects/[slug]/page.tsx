@@ -53,7 +53,7 @@ export default function ProjectPage() {
           <div className="max-w-7xl mx-auto">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xl font-medium tracking-tight text-black hover:opacity-70 transition-opacity"
+              className="inline-flex items-center gap-2 font-medium text-black hover:opacity-70 transition-opacity"
             >
               <span>←</span>
               <span>Work</span>
@@ -66,27 +66,25 @@ export default function ProjectPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               <div className="flex flex-col items-start text-left">
                 <div className="space-y-2">
-                  <h1 className="text-3xl md:text-4xl font-medium text-black tracking-tight">
-                    {project.title}
-                  </h1>
+                  <h1 className="font-medium text-black">{project.title}</h1>
                   {project.client && (
-                    <div className="text-xl font-medium text-black tracking-tight">
+                    <div className="text-[#666666]">
                       Client:{" "}
                       <a
                         href={project.client.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="underline"
+                        className="underline text-black"
                       >
                         {project.client.name}
                       </a>
                     </div>
                   )}
-                  <div className="text-xl font-medium text-black tracking-tight">
+                  <div className="text-[#666666]">
                     {formatDate(project.date)}
                   </div>
                   {project.tags.length > 0 && (
-                    <div className="text-sm uppercase tracking-wide text-[#9c9c9c]">
+                    <div className="text-[#666666]">
                       {project.tags.join(", ")}
                     </div>
                   )}
@@ -95,7 +93,7 @@ export default function ProjectPage() {
 
               <div className="flex flex-col">
                 {project.description && (
-                  <p className="text-base md:text-lg text-black font-medium tracking-tight leading-relaxed">
+                  <p className="text-[#666666] leading-relaxed">
                     {project.description}
                   </p>
                 )}

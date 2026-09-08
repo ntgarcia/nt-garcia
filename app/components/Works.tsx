@@ -11,17 +11,13 @@ const ProjectRow = ({ project }: { project: Project }) => {
     >
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
         <div className="flex items-baseline gap-4">
-          <span className="text-sm uppercase tracking-wide text-[#9c9c9c]">
-            {formatDate(project.date)}
-          </span>
-          <h3 className="text-xl md:text-2xl font-medium tracking-tight text-black group-hover:opacity-60 transition-opacity">
+          <span className="text-[#666666]">{formatDate(project.date)}</span>
+          <h3 className="font-medium text-black group-hover:opacity-60 transition-opacity">
             {project.title}
           </h3>
         </div>
         {project.tags.length > 0 && (
-          <p className="text-sm uppercase tracking-wide text-[#9c9c9c]">
-            {project.tags.join(", ")}
-          </p>
+          <p className="text-[#666666]">{project.tags.join(", ")}</p>
         )}
       </div>
 
