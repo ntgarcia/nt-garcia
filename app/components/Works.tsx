@@ -1,196 +1,84 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import {
+  allTags,
+  formatDate,
+  sortedProjects,
+  type Project,
+} from "../data/projects";
 
-type ProjectType =
-  | "project"
-  | "experiment"
-  | "art"
-  | "tweet"
-  | "design"
-  | "slideshow";
-
-type Project = {
-  id: number;
-  imageUrl: string;
-  slug: string;
-  title: string;
-  tags: string[];
-  type: ProjectType;
-  slideshowImages?: string[];
-  externalUrl?: string;
-};
-
-const nitehartsImages = [
-  "/design/niteharts/nh_merch_0000_hoodie-fix.png",
-  "/design/niteharts/nh_merch_0000_k2zd.png",
-  "/design/niteharts/nh_merch_0001_jersey.png",
-  "/design/niteharts/nh_merch_0001_k2.png",
-  "/design/niteharts/nh_merch_0002_iso.png",
-  "/design/niteharts/nh_merch_0002_keychain.png",
-  "/design/niteharts/nh_merch_0003_sun.png",
-  "/design/niteharts/nh_merch_0004_sigil.png",
-  "/design/niteharts/nh_merch_0005_ad.png",
-];
-
-const k2sfImages = [
-  "/design/knock2/knock2-sf-flyer-alt.jpg",
-  "/design/knock2/knock2-sf-flyer-full-text.jpg",
-];
-
-const isoftsuImages = [
-  "/design/isoxo/iso_ftsu_1.jpg",
-  "/design/isoxo/iso_ftsu_2.jpg",
-];
-
-const projects: Project[] = [
-  {
-    id: 1,
-    imageUrl: "/design/niteharts/00.jpg",
-    slug: "niteharts-merch",
-    title: "Niteharts Merch",
-    tags: ["2025", "Merch", "Design"],
-    type: "slideshow",
-    slideshowImages: nitehartsImages,
-  },
-  {
-    id: 2,
-    imageUrl: "/design/k2-ny/k2-radar-try.gif",
-    slug: "knock2-ny-flyer",
-    title: "Knock2 Mi22ion",
-    tags: ["2026", "Design"],
-    type: "slideshow",
-  },
-  {
-    id: 4,
-    imageUrl: "/design/mruhacks/mruhacksreel-1.gif",
-    slug: "mruhacks2025",
-    title: "MRUHacks 2025",
-    tags: ["2025", "Marketing", "Design"],
-    type: "slideshow",
-  },
-  {
-    id: 5,
-    imageUrl: "/design/k2-sf/knock2-sf-flyer-full-text.jpg",
-    slug: "knock2-sf-flyer",
-    title: "Knock2 Block Party",
-    tags: ["2025", "Design", "Flyer"],
-    type: "slideshow",
-    slideshowImages: k2sfImages,
-  },
-  {
-    id: 6,
-    imageUrl: "/design/isoxo/ftsu-gif.gif",
-    slug: "isoxo-ftsu-title",
-    title: "ISOxo - FTSU Title",
-    tags: ["2025", "Title", "Design"],
-    type: "slideshow",
-    slideshowImages: isoftsuImages,
-  },
-  {
-    id: 7,
-    imageUrl: "/design/etc/oomfrave6.jpg",
-    slug: "oomfrave6",
-    title: "Oomfrave6 Flyer",
-    tags: ["2025", "Design", "Flyer"],
-    type: "slideshow",
-  },
-  {
-    id: 8,
-    imageUrl: "/design/twin/twin.jpg",
-    slug: "twin",
-    title: "Twin Diplomacy Flyer",
-    tags: ["2026", "Design", "Flyer"],
-    type: "slideshow",
-  },
-  {
-    id: 9,
-    imageUrl: "/design/ryushinju/logo-full.png",
-    slug: "ryushinju",
-    title: "Ryushinju",
-    tags: ["2025", "Logo", "Concept"],
-    type: "slideshow",
-  },
-  {
-    id: 10,
-    imageUrl: "/design/etc/eoyf.jpg",
-    slug: "eoyf",
-    title: "Expression On Your Face",
-    tags: ["2025", "Design", "Concept"],
-    type: "slideshow",
-  },
-];
-
-const ProjectItem = ({ project }: { project: Project }) => {
-  const LinkWrapper = ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => {
-    if (project.externalUrl) {
-      return (
-        <a
-          href={project.externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      );
-    }
-    if (project.slug) {
-      return (
-        <Link href={`/projects/${project.slug}`}>
-          {children}
-        </Link>
-      );
-    }
-    return <div>{children}</div>;
-  };
-
+const ProjectRow = ({ project }: { project: Project }) => {
   return (
-    <LinkWrapper>
-      <div className="mt-auto break-inside-avoid mb-6">
-        {/* Thumbnail - consistent width, natural height */}
-        <div className="">
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            className="w-full h-auto object-cover rounded-xl"
-            loading="lazy"
-          />
-        </div>
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start py-8 border-t border-black/10"
+    >
+      <div className="md:col-span-2 text-sm uppercase tracking-wide text-[#9c9c9c]">
+        {formatDate(project.date)}
+      </div>
 
-        {/* Title - bold black text */}
-        <h3 className="text-xl font-medium text-black tracking-tight mt-3">
+      <div className="md:col-span-3">
+        <h3 className="text-lg md:text-xl font-medium tracking-tight text-black group-hover:opacity-60 transition-opacity">
           {project.title}
         </h3>
-
-        {/* Tags - lighter grey text */}
         {project.tags.length > 0 && (
-          <p className="text-xl font-medium tracking-tight text-[#9c9c9c]">
+          <p className="mt-1 text-sm tracking-tight text-[#9c9c9c]">
             {project.tags.join(", ")}
           </p>
         )}
       </div>
-    </LinkWrapper>
+
+      <div className="md:col-span-7 flex gap-3 overflow-x-auto md:overflow-visible">
+        {project.thumbnails.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={project.title}
+            className="h-32 md:h-36 w-auto flex-shrink-0 object-cover rounded-md group-hover:opacity-80 transition-opacity"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    </Link>
   );
 };
 
 export default function Works() {
+  const [activeTag, setActiveTag] = useState<string>("All");
+  const tags = useMemo(() => ["All", ...allTags()], []);
+  const projects = useMemo(() => sortedProjects(), []);
+  const filtered = useMemo(
+    () =>
+      activeTag === "All"
+        ? projects
+        : projects.filter((project) => project.tags.includes(activeTag)),
+    [activeTag, projects]
+  );
+
   return (
-    <section className="py-12">
-      <div className="mx-auto">
-        {" "}
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-4">
-          {projects.map((project) => (
-            <ProjectItem
-              key={project.id}
-              project={project}
-            />
-          ))}
-        </div>
+    <section id="works" className="py-12">
+      <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 text-sm uppercase tracking-wide">
+        {tags.map((tag) => (
+          <button
+            key={tag}
+            onClick={() => setActiveTag(tag)}
+            className={
+              tag === activeTag
+                ? "text-black underline underline-offset-4"
+                : "text-[#9c9c9c] hover:text-black transition-colors"
+            }
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
+      <div className="border-b border-black/10">
+        {filtered.map((project) => (
+          <ProjectRow key={project.id} project={project} />
+        ))}
       </div>
     </section>
   );

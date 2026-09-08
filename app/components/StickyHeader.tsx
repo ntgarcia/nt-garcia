@@ -16,12 +16,18 @@ export default function StickyHeader() {
           <nav className="flex items-center gap-6">
             <div className="flex items-center gap-6 ml-4">
               <a
+                href="mailto:naninf.work@gmail.com"
+                className="font-medium tracking-tight underline transition-opacity hover:opacity-70"
+              >
+                Contact
+              </a>
+              <a
                 href="https://www.instagram.com/nan____inf/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium tracking-tight underline transition-opacity hover:opacity-70"
               >
-                IG
+                Instagram
               </a>
               <a
                 href="https://www.linkedin.com/in/ntns/"
@@ -34,6 +40,7 @@ export default function StickyHeader() {
               <a
                 href="https://drive.google.com/file/d/1GEjnKFfFki7U3aW8z9r49nArUAGhhl8P/view?usp=sharing"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="font-medium tracking-tight underline transition-opacity hover:opacity-70"
               >
                 CV
