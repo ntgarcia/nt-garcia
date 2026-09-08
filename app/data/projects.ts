@@ -154,9 +154,3 @@ export function formatDate(date: string): string {
 export function sortedProjects(list: Project[] = projects): Project[] {
   return [...list].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
-
-export function allTags(list: Project[] = projects): string[] {
-  const tags = new Set<string>();
-  list.forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
-  return Array.from(tags).sort();
-}
