@@ -19,23 +19,6 @@ module.exports = {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
       },
-      cursor: {
-        custom: 'url("/cursor.svg"), auto',
-      },
-      keyframes: {
-        twinkle: {
-          "0%, 100%": {
-            opacity: 0.2,
-            transform: "scale(0.8)",
-          },
-          "50%": { opacity: 0.6, transform: "scale(1.2)" },
-        },
-      },
-      animation: {
-        twinkle:
-          "twinkle var(--twinkle-duration, 3s) ease-in-out infinite",
-      },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
 };

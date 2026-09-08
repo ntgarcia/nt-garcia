@@ -14,16 +14,7 @@ export const metadata: Metadata = {
   title: "Nathan Garcia",
   description: "Portfolio Website",
   icons: {
-    icon: [
-      {
-        url: "/n-logo.svg",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/n-logo-dark.svg",
-        media: "(prefers-color-scheme: light)",
-      },
-    ],
+    icon: "/n-logo.svg",
   },
   openGraph: {
     title: "Nathan Garcia",
