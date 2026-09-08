@@ -11,6 +11,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-mono), monospace;
   font-size: 16px;
+  /* Without this, the browser "fixes" the height change when the hero
+     image unmounts by yanking scrollY back down, fighting the user's
+     scroll and making the hero-to-nav collapse feel stuck. */
+  overflow-anchor: none;
 }
 
 a,
