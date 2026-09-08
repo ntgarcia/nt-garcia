@@ -17,7 +17,7 @@ export default function Header() {
         />
       )}
       <p className="max-w-2xl tracking-tight leading-relaxed text-[#666666]">
-        is a graphic designer based in Calgary, Alberta,
+        is a graphic designer based in Calgary, Alberta
         working across brand identity, digital and physical assets for
         artists, festivals, and organizations. Currently finishing their
         Bachelor in Computer Information Systems at Mount Royal University.
