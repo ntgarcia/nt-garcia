@@ -3,15 +3,20 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { formatDate, sortedProjects, type Project } from "../data/projects";
+import { useProjectImages } from "../lib/useProjectImages";
 import Lightbox from "./Lightbox";
+
+/** Project pages aren't ready yet — flip this on once they are. */
+const PROJECT_LINKS_ENABLED = false;
 
 const ProjectRow = ({
   project,
   onImageClick,
 }: {
   project: Project;
-  onImageClick: (index: number) => void;
+  onImageClick: (images: string[], index: number) => void;
 }) => {
+  const { images } = useProjectImages(project);
   const rowRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -35,7 +40,7 @@ const ProjectRow = ({
       resizeObserver.disconnect();
       window.removeEventListener("resize", updateScrollState);
     };
-  }, [project.thumbnails]);
+  }, [images]);
 
   const scrollByAmount = (direction: 1 | -1) => {
     const el = rowRef.current;
@@ -45,41 +50,37 @@ const ProjectRow = ({
 
   return (
     <div className="py-6 border-t border-black/10">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
-        <div className="flex items-baseline gap-4">
-          <span className="text-[#666666]">{formatDate(project.date)}</span>
-          <h3 className="font-medium text-black">{project.title}</h3>
-        </div>
-        <div className="flex items-baseline gap-4">
-          {project.tags.length > 0 && (
-            <p className="text-[#666666]">{project.tags.join(", ")}</p>
-          )}
+      <div className="flex items-baseline gap-4 mb-3">
+        <span className="text-[#666666]">{formatDate(project.date)}</span>
+        {PROJECT_LINKS_ENABLED ? (
           <Link
             href={`/projects/${project.slug}`}
-            className="font-medium text-black underline hover:opacity-70 transition-opacity"
+            className="font-medium text-black hover:opacity-70 transition-opacity"
           >
-            View Project
+            {project.title}
           </Link>
-        </div>
+        ) : (
+          <h3 className="font-medium text-black">{project.title}</h3>
+        )}
       </div>
 
       <div className="relative">
         <div
           ref={rowRef}
           onScroll={updateScrollState}
-          className="flex gap-1 overflow-x-auto scroll-smooth"
+          className="no-scrollbar flex gap-1 overflow-x-auto scroll-smooth"
         >
-          {project.thumbnails.map((src, index) => (
+          {images.map((src, index) => (
             <button
               key={index}
-              onClick={() => onImageClick(index)}
+              onClick={() => onImageClick(images, index)}
               className="flex-shrink-0 cursor-zoom-in"
             >
               <img
                 src={src}
                 alt={project.title}
                 onLoad={updateScrollState}
-                className="h-[260px] sm:h-[360px] md:h-[480px] w-auto object-cover opacity-100 hover:opacity-70 transition-opacity"
+                className="h-[260px] sm:h-[360px] md:h-[480px] w-auto object-cover"
                 loading="lazy"
               />
             </button>
@@ -112,7 +113,8 @@ const ProjectRow = ({
 export default function Works() {
   const projects = sortedProjects();
   const [lightbox, setLightbox] = useState<{
-    project: Project;
+    title: string;
+    images: string[];
     index: number;
   } | null>(null);
 
@@ -123,15 +125,17 @@ export default function Works() {
           <ProjectRow
             key={project.id}
             project={project}
-            onImageClick={(index) => setLightbox({ project, index })}
+            onImageClick={(images, index) =>
+              setLightbox({ title: project.title, images, index })
+            }
           />
         ))}
       </div>
 
       {lightbox && (
         <Lightbox
-          images={lightbox.project.thumbnails}
-          title={lightbox.project.title}
+          images={lightbox.images}
+          title={lightbox.title}
           index={lightbox.index}
           onIndexChange={(index) =>
             setLightbox((current) => (current ? { ...current, index } : current))

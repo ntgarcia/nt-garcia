@@ -3,48 +3,19 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { useState, useEffect } from "react";
 import { formatDate, projects } from "../../data/projects";
+import { useProjectImages } from "../../lib/useProjectImages";
 
 export default function ProjectPage() {
   const params = useParams();
   const slug = params.slug as string;
-  const [images, setImages] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
 
   const project = projects.find((p) => p.slug === slug);
+  const { images: allImages, loading } = useProjectImages(project);
 
   if (!project) {
     notFound();
   }
-
-  useEffect(() => {
-    const loadImages = async () => {
-      if (project.imageFolder) {
-        try {
-          const response = await fetch(
-            `/api/images?folder=${encodeURIComponent(project.imageFolder)}`
-          );
-          if (response.ok) {
-            const data = await response.json();
-            setImages(data.images || []);
-          } else {
-            setImages(project.thumbnails);
-          }
-        } catch (error) {
-          console.error("Error loading images:", error);
-          setImages(project.thumbnails);
-        }
-      } else {
-        setImages(project.thumbnails);
-      }
-      setLoading(false);
-    };
-
-    loadImages();
-  }, [project]);
-
-  const allImages = images.length > 0 ? images : project.thumbnails;
 
   return (
     <div className="relative min-h-screen bg-white">
