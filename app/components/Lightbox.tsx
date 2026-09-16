@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useCallback } from "react";
+import { optimizedSrc } from "../lib/imageUrl";
 
 type LightboxProps = {
   images: string[];
@@ -64,7 +65,7 @@ export default function Lightbox({
       )}
 
       <img
-        src={images[index]}
+        src={optimizedSrc(images[index], 1920)}
         alt={`${title} - Image ${index + 1}`}
         onClick={(e) => e.stopPropagation()}
         className="max-h-[85vh] max-w-full object-contain"

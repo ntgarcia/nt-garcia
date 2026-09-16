@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate, projects } from "../../data/projects";
+import { optimizedSrc } from "../../lib/imageUrl";
 import { useProjectImages } from "../../lib/useProjectImages";
 
 export default function ProjectPage() {
@@ -81,7 +82,7 @@ export default function ProjectPage() {
                   <div key={index} className="flex flex-col">
                     <div className="relative w-full overflow-hidden">
                       <img
-                        src={image}
+                        src={optimizedSrc(image, 828)}
                         alt={`${project.title} - Image ${index + 1}`}
                         className="w-full h-auto object-cover rounded-xl"
                         loading={index === 0 ? "eager" : "lazy"}

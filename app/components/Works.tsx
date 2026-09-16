@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { formatDate, sortedProjects, type Project } from "../data/projects";
+import { optimizedSrc } from "../lib/imageUrl";
 import { useProjectImages } from "../lib/useProjectImages";
 import Lightbox from "./Lightbox";
 
@@ -77,7 +78,7 @@ const ProjectRow = ({
               className="flex-shrink-0 cursor-zoom-in"
             >
               <img
-                src={src}
+                src={optimizedSrc(src, 828)}
                 alt={project.title}
                 onLoad={updateScrollState}
                 className="h-[260px] sm:h-[360px] md:h-[480px] w-auto object-cover"
