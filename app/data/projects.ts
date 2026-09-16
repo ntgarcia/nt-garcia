@@ -44,7 +44,7 @@ export const projects: Project[] = [
       "/design/k2-2025/k2-sf",
     ],
     thumbnails: [
-      "/design/k2-2026/K2-SDA-JP-FLYER-EDIT2.jpg",
+      "/design/k2-2026/01-K2-SDA-JP-FLYER-EDIT2.jpg",
       "/design/k2-2026/SDA_TITLE_CARD_EDIT.jpg",
       "/design/k2-2025/k2-ny/K2_NY_5_EDITS_2.jpg",
       "/design/k2-2025/k2-lolla/k2-lolla-front.jpg",
@@ -62,9 +62,9 @@ export const projects: Project[] = [
     description:
       "Flyer, tour poster, and merch design for ISOxo's Hardcore Diva tour and one-off shows.",
     thumbnails: [
-      "/design/isoxo-hcd/ISOXO-HCD-TOUR-ANIMATED.jpg",
+      "/design/isoxo-hcd/01-ISOXO-HCD-TOUR-ANIMATED.gif",
       "/design/isoxo-hcd/HCD-NY-V2-EDIT.jpg",
-      "/design/isoxo-hcd/250723-isoxo-ampm-toronto.jpg",
+      "/design/isoxo-hcd/z250723-isoxo-ampm-toronto.jpg",
       "/design/isoxo-hcd/hcd_cowpalace_flyer_8.jpg",
     ],
   },
@@ -77,8 +77,8 @@ export const projects: Project[] = [
     imageFolder: "/design/nh26",
     description: "Flyer designs for the Main Lineup and Latenite Lineup.",
     thumbnails: [
-      "/design/nh26/nh26-main-lineup.jpg",
-      "/design/nh26/nh26-latenite-lineup.jpg",
+      "/design/nh26/01nh26-main-lineup.jpg",
+      "/design/nh26/02nh26-latenite-lineup.jpg",
     ],
   },
   {
@@ -172,7 +172,38 @@ export const projects: Project[] = [
     thumbnails: [
       "/design/isoxo-ftsu/iso_ftsu_1.jpg",
       "/design/isoxo-ftsu/iso_ftsu_2.jpg",
-      "/design/isoxo-ftsu/ftsu-gif.gif",
+      "/design/isoxo-ftsu/01-ftsu-gif.gif",
+    ],
+  },
+  {
+    id: 11,
+    slug: "born-loud",
+    title: "Born Loud",
+    date: "2026-09",
+    tags: ["Merch", "Design"],
+    imageFolder: ["/design/bornxloud26", "/design/bornxloud25"],
+    description:
+      "Merch design for streetwear brand Born Loud, including the BXL hoodie drop and the HOL! Spring 2026 collection (continuously updated).",
+    thumbnails: [
+      "/design/bornxloud26/IMG_9346.png",
+      "/design/bornxloud26/IMG_2520.png",
+      "/design/bornxloud25/01.jpg",
+      "/design/bornxloud26/IMG_8154.png",
+    ],
+  },
+  {
+    id: 12,
+    slug: "mruhacks2026",
+    title: "MRUHacks 2026",
+    date: "2026-09",
+    tags: ["Marketing", "Design"],
+    imageFolder: "/design/mruhacks2026",
+    description:
+      "Branding and marketing design for MRUHacks 2026, including the Journey to MRUHacks workshop series and applications campaign.",
+    thumbnails: [
+      "/design/mruhacks2026/mruhacks2026-regopen.png",
+      "/design/mruhacks2026/mruhacks2026-hackathon101.png",
+      "/design/mruhacks2026/mruhacks2026-gitgood.png",
     ],
   },
 ];
