@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { formatDate, sortedProjects, type Project } from "../data/projects";
+import { formatDateRange, sortedProjects, type Project } from "../data/projects";
 import { optimizedSrc } from "../lib/imageUrl";
 import { useProjectImages } from "../lib/useProjectImages";
 import Lightbox from "./Lightbox";
 
 /** Project pages aren't ready yet — flip this on once they are. */
 const PROJECT_LINKS_ENABLED = false;
+
+/** Descriptions are hidden for now — flip this on to show them under each title. */
+const PROJECT_DESCRIPTIONS_ENABLED = false;
 
 const ProjectRow = ({
   project,
@@ -52,7 +55,7 @@ const ProjectRow = ({
   return (
     <div className="py-6 border-t border-black/10">
       <div className="flex items-baseline gap-4 mb-3">
-        <span className="text-[#666666]">{formatDate(project.date)}</span>
+        <span className="text-[#666666]">{formatDateRange(project)}</span>
         {PROJECT_LINKS_ENABLED ? (
           <Link
             href={`/projects/${project.slug}`}
@@ -64,6 +67,12 @@ const ProjectRow = ({
           <h3 className="font-medium text-black">{project.title}</h3>
         )}
       </div>
+
+      {PROJECT_DESCRIPTIONS_ENABLED && project.description && (
+        <p className="mb-3 max-w-2xl text-[#666666] leading-relaxed">
+          {project.description}
+        </p>
+      )}
 
       <div className="relative">
         <div
@@ -107,6 +116,7 @@ const ProjectRow = ({
           </button>
         )}
       </div>
+
     </div>
   );
 };

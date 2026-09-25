@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatDate, projects } from "../../data/projects";
+import { formatDateRange, projects } from "../../data/projects";
 import { optimizedSrc } from "../../lib/imageUrl";
 import { useProjectImages } from "../../lib/useProjectImages";
 
@@ -53,7 +53,7 @@ export default function ProjectPage() {
                     </div>
                   )}
                   <div className="text-[#666666]">
-                    {formatDate(project.date)}
+                    {formatDateRange(project)}
                   </div>
                   {project.tags.length > 0 && (
                     <div className="text-[#666666]">

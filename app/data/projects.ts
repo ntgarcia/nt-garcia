@@ -7,10 +7,16 @@ export type Project = {
   id: number;
   slug: string;
   title: string;
-  /** "YYYY" or "YYYY-MM" — used for both display and sorting. */
-  date: string;
+  /** When work started: "YYYY" or "YYYY-MM". */
+  start: string;
+  /**
+   * When work ended: "YYYY", "YYYY-MM", or "present" for ongoing work.
+   * Leave out for one-off projects to show just the start date.
+   */
+  end?: string;
   tags: string[];
   client?: ProjectClient;
+  /** Short note shown under the project: your contributions, collaborators, etc. */
   description?: string;
   /** Folder(s) under /public to read the full gallery from (via /api/images). */
   imageFolder?: string | string[];
@@ -20,59 +26,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 1,
-    slug: "zdk2",
-    title: "ZDK2",
-    date: "2026",
-    tags: ["Design", "Logo"],
-    imageFolder: "/design/zdk2",
-    description: "Logo design for ZDK2.",
-    thumbnails: ["/design/zdk2/zdk2-logo-ig_0000_1.jpg"],
-  },
-  {
-    id: 2,
-    slug: "knock2",
-    title: "Knock2",
-    date: "2026-09",
-    tags: ["Design", "Flyer"],
-    description:
-      "Working alongside Zach Okami and Paul Kim to create the visual and graphic design for Knock2's show run — from the SF Block Party and Lollapalooza to New York and the Sound di Alarm release party in Tokyo (continuously updated).",
-    imageFolder: [
-      "/design/k2-2026",
-      "/design/k2-2025/k2-ny",
-      "/design/k2-2025/k2-lolla",
-      "/design/k2-2025/k2-sf",
-    ],
-    thumbnails: [
-      "/design/k2-2026/01-K2-SDA-JP-FLYER-EDIT2.jpg",
-      "/design/k2-2026/SDA_TITLE_CARD_EDIT.jpg",
-      "/design/k2-2025/k2-ny/K2_NY_5_EDITS_2.jpg",
-      "/design/k2-2025/k2-lolla/k2-lolla-front.jpg",
-      "/design/k2-2025/k2-sf/knock2-sf-flyer-full-text.jpg",
-      "/design/k2-2025/k2-ny/k2-radar-try.gif",
-    ],
-  },
-  {
-    id: 3,
-    slug: "isoxo-hardcore-diva",
-    title: "ISOxo Hardcore Diva",
-    date: "2026",
-    tags: ["Design", "Flyer", "Tour"],
-    imageFolder: "/design/isoxo-hcd",
-    description:
-      "Flyer, tour poster, and merch design for ISOxo's Hardcore Diva tour and one-off shows.",
-    thumbnails: [
-      "/design/isoxo-hcd/01-ISOXO-HCD-TOUR-ANIMATED.gif",
-      "/design/isoxo-hcd/HCD-NY-V2-EDIT.jpg",
-      "/design/isoxo-hcd/z250723-isoxo-ampm-toronto.jpg",
-      "/design/isoxo-hcd/hcd_cowpalace_flyer_8.jpg",
-    ],
-  },
-  {
     id: 4,
     slug: "niteharts2026",
     title: "Niteharts 2026",
-    date: "2026-10",
+    start: "2026-01",
+    end: "Now",
     tags: ["Design", "Flyer"],
     imageFolder: "/design/nh26",
     description: "Flyer designs for the Main Lineup and Latenite Lineup.",
@@ -82,10 +40,206 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 7,
+    slug: "zacari-flying-car",
+    title: "Zacari — Flying Car",
+    start: "2026-06",
+    end: "Now",
+    tags: ["Design", "Album Art"],
+    imageFolder: "/design/zacari",
+    description:
+      "Album cover and title card explorations for Zacari's Flying Car.",
+    thumbnails: [
+      "/design/zacari/fc-album-cover-explore-v2-edit.jpg",
+      "/design/zacari/fc-album-cover-explore-v2-02-orange.jpg",
+      "/design/zacari/STATIC_COVER_0810.jpg",
+      "/design/zacari/SINGLE-EXPLORE-1.jpg",
+    ],
+  },
+  {
+    id: 13,
+    slug: "devault-merch",
+    title: "Devault Merch",
+    start: "2026-07",
+    end: "Now",
+    tags: ["Merch", "Design"],
+    imageFolder: "/design/devault",
+    description: "",
+    thumbnails: [
+      "/design/devault/DEVAULT_MERCH_0000_Layer 1.jpg",
+      "/design/devault/DEVAULT_MERCH_0001_Background copy.jpg",
+      "/design/devault/DEVAULT_MERCH_0002_Background copy 2.jpg",
+    ],
+  },
+  {
+    id: 15,
+    slug: "knock2-merch",
+    title: "Knock2 Merch",
+    start: "2026-03",
+    end: "Now",
+    tags: ["Merch", "Design"],
+    imageFolder: "/design/k2-merch-2026",
+    description: "",
+    thumbnails: [
+      "/design/k2-merch-2026/K2 CADET JACKET.png",
+      "/design/k2-merch-2026/K2 LEATHER MOTO JACKET.png",
+    ],
+  },
+  {
+    id: 12,
+    slug: "mruhacks2026",
+    title: "MRUHacks 2026",
+    start: "2026-02",
+    end: "Now",
+    tags: ["Marketing", "Design"],
+    imageFolder: "/design/mruhacks2026",
+    description:
+      "Branding and marketing design for MRUHacks 2026, including the Journey to MRUHacks workshop series and applications campaign.",
+    thumbnails: [
+      "/design/mruhacks2026/01-mruhacks2026-regopen.png",
+      "/design/mruhacks2026/02-MRUHACKS2026-HOODIEMOCKUP.png",
+      "/design/mruhacks2026/MRUHacks2026-Sticker-IO-You-One.png",
+    ],
+  },
+  {
+    id: 2,
+    slug: "knock2-2026",
+    title: "Knock2 2026",
+    start: "2026",
+    tags: ["Design", "Flyer"],
+    description:
+      "Working alongside Zach Okami and Paul Kim on the visual and graphic design for Knock2's 2026 shows, including the Sound di Alarm release party in Tokyo (continuously updated).",
+    imageFolder: "/design/k2-2026",
+    thumbnails: [
+      "/design/k2-2026/01-K2-SDA-JP-FLYER-EDIT2.jpg",
+      "/design/k2-2026/SDA_TITLE_CARD_EDIT.jpg",
+    ],
+  },
+  {
+    id: 14,
+    slug: "knock2-2025",
+    title: "Knock2 2025",
+    start: "2025",
+    tags: ["Design", "Flyer"],
+    description:
+      "Working alongside Zach Okami and Paul Kim on the visual and graphic design for Knock2's 2025 show run — from the SF Block Party and Lollapalooza to New York.",
+    imageFolder: [
+      "/design/k2-2025/k2-ny",
+      "/design/k2-2025/k2-lolla",
+      "/design/k2-2025/k2-sf",
+    ],
+    thumbnails: [
+      "/design/k2-2025/k2-ny/K2_NY_5_EDITS_2.jpg",
+      "/design/k2-2025/k2-lolla/k2-lolla-front.jpg",
+      "/design/k2-2025/k2-sf/knock2-sf-flyer-full-text.jpg",
+    ],
+  },
+  {
+    id: 11,
+    slug: "born-loud",
+    title: "Born Loud",
+    start: "2025-11",
+    end: "Now",
+    tags: ["Merch", "Design"],
+    imageFolder: ["/design/bornxloud26", "/design/bornxloud25"],
+    description:
+      "Merch design for streetwear brand Born Loud, including the BXL hoodie drop and the HOL! Spring 2026 collection (continuously updated).",
+    thumbnails: [
+      "/design/bornxloud26/01.png",
+      "/design/bornxloud26/02.png",
+      "/design/bornxloud26/03.png",
+      "/design/bornxloud26/04.png",
+    ],
+  },
+  {
+    id: 16,
+    slug: "isoxo-merch",
+    title: "ISOxo Merch",
+    start: "2026",
+    tags: ["Merch", "Design"],
+    imageFolder: "/design/iso-merch-2026",
+    description: "",
+    thumbnails: [
+      "/design/iso-merch-2026/01.png",
+      "/design/iso-merch-2026/02.png",
+    ],
+  },
+  {
+    id: 1,
+    slug: "zdk2",
+    title: "ZDK2",
+    start: "2026",
+    tags: ["Design", "Logo"],
+    imageFolder: "/design/zdk2",
+    description: "Logo design for ZDK2.",
+    thumbnails: ["/design/zdk2/01-zdk2-logo-ig_0000_1.jpg"],
+  },
+  {
+    id: 3,
+    slug: "isoxo-hardcore-diva",
+    title: "ISOxo Hardcore Diva",
+    start: "2025-11",
+    end: "Now",
+    tags: ["Design", "Flyer", "Tour"],
+    imageFolder: "/design/isoxo-hcd",
+    description:
+      "Flyer, tour poster, and merch design for ISOxo's Hardcore Diva tour and one-off shows.",
+    thumbnails: [
+      "/design/isoxo-hcd/01-ISOXO-HCD-TOUR-ANIMATED.gif",
+      "/design/isoxo-hcd/02.jpg",
+      "/design/isoxo-hcd/03-HCD-ULTRA-TYPETREATMENTS.gif",
+      "/design/isoxo-hcd/HCD-NY-V2-EDIT.jpg",
+    ],
+  },
+  {
+    id: 10,
+    slug: "isoxo-ftsu",
+    title: "ISOxo FTSU",
+    start: "2025-11",
+    tags: ["Design"],
+    imageFolder: "/design/isoxo-ftsu",
+    description: "Single artwork and promo design for ISOxo's FTSU.",
+    thumbnails: [
+      "/design/isoxo-ftsu/iso_ftsu_1.jpg",
+      "/design/isoxo-ftsu/iso_ftsu_2.jpg",
+      "/design/isoxo-ftsu/01-ftsu-gif.gif",
+    ],
+  },
+  {
+    id: 8,
+    slug: "prettifun-merch",
+    title: "Prettifun Merch",
+    start: "2026-07",
+    tags: ["Merch", "Design"],
+    imageFolder: "/design/prettifun",
+    description:
+      "Tour merch design for Prettifun, supporting Ken Carson's Xperimenting tour.",
+    thumbnails: [
+      "/design/prettifun/PRETTIFUN_MERCH_2026_NANINF_MOCKUP_BLACK_TEE.jpg",
+      "/design/prettifun/PRETTIFUN_MERCH_2026_NANINF_MOCKUP_WHITE_TEE.jpg",
+    ],
+  },
+  {
+    id: 9,
+    slug: "cashmere-cat-9-vinyl",
+    title: "Cashmere Cat — 9 Vinyl Concept",
+    start: "2026-04",
+    tags: ["Design", "Concept"],
+    imageFolder: "/design/concepts",
+    description:
+      "Personal concept design for a vinyl release of Cashmere Cat's 9 — packaging and tracklist artwork exploration.",
+    thumbnails: [
+      "/design/concepts/9-Vinyl-Concept-NEW_0000_1.jpg",
+      "/design/concepts/9-Vinyl-Concept-NEW_0001_2.jpg",
+      "/design/concepts/9-Vinyl-Concept-NEW_0002_3.jpg",
+      "/design/concepts/9-Vinyl-Concept-NEW_0003_4.jpg",
+    ],
+  },
+  {
     id: 5,
     slug: "mruhacks2025",
     title: "MRUHacks 2025",
-    date: "2025",
+    start: "2025",
     tags: ["Marketing", "Design"],
     imageFolder: "/design/mruhacks2025",
     description:
@@ -100,7 +254,7 @@ export const projects: Project[] = [
     id: 6,
     slug: "niteharts-merch",
     title: "Niteharts Merch",
-    date: "2025",
+    start: "2025",
     tags: ["Merch", "Design"],
     imageFolder: "/design/niteharts",
     client: {
@@ -115,100 +269,10 @@ export const projects: Project[] = [
       "/design/niteharts/NITEHARTS_IG_0000_jersey.jpg",
     ],
   },
-  {
-    id: 7,
-    slug: "zacari-flying-car",
-    title: "Zacari — Flying Car",
-    date: "2026-08",
-    tags: ["Design", "Album Art"],
-    imageFolder: "/design/zacari",
-    description:
-      "Album cover and title card explorations for Zacari's Flying Car.",
-    thumbnails: [
-      "/design/zacari/fc-album-cover-explore-v2-edit.jpg",
-      "/design/zacari/fc-album-cover-explore-v2-02-orange.jpg",
-      "/design/zacari/STATIC_COVER_0810.jpg",
-      "/design/zacari/SINGLE-EXPLORE-1.jpg",
-    ],
-  },
-  {
-    id: 8,
-    slug: "prettifun-merch",
-    title: "Prettifun Merch",
-    date: "2026-09",
-    tags: ["Merch", "Design"],
-    imageFolder: "/design/prettifun",
-    description:
-      "Tour merch design for Prettifun, supporting Ken Carson's Xperimenting tour.",
-    thumbnails: [
-      "/design/prettifun/PRETTIFUN_MERCH_2026_NANINF_MOCKUP_BLACK_TEE.jpg",
-      "/design/prettifun/PRETTIFUN_MERCH_2026_NANINF_MOCKUP_WHITE_TEE.jpg",
-    ],
-  },
-  {
-    id: 9,
-    slug: "cashmere-cat-9-vinyl",
-    title: "Cashmere Cat — 9 Vinyl Concept",
-    date: "2026-04",
-    tags: ["Design", "Concept"],
-    imageFolder: "/design/concepts",
-    description:
-      "Personal concept design for a vinyl release of Cashmere Cat's 9 — packaging and tracklist artwork exploration.",
-    thumbnails: [
-      "/design/concepts/CASHMERE CAT 9 VINYLArtboard 3.jpg",
-      "/design/concepts/9-Vinyl-Concept-NEW_0000_1.jpg",
-      "/design/concepts/9-Vinyl-Concept-NEW_0002_3.jpg",
-      "/design/concepts/9-Vinyl-Concept-NEW_0004_5.jpg",
-    ],
-  },
-  {
-    id: 10,
-    slug: "isoxo-ftsu",
-    title: "ISOxo FTSU",
-    date: "2026-02",
-    tags: ["Design"],
-    imageFolder: "/design/isoxo-ftsu",
-    description: "Single artwork and promo design for ISOxo's FTSU.",
-    thumbnails: [
-      "/design/isoxo-ftsu/iso_ftsu_1.jpg",
-      "/design/isoxo-ftsu/iso_ftsu_2.jpg",
-      "/design/isoxo-ftsu/01-ftsu-gif.gif",
-    ],
-  },
-  {
-    id: 11,
-    slug: "born-loud",
-    title: "Born Loud",
-    date: "2026-09",
-    tags: ["Merch", "Design"],
-    imageFolder: ["/design/bornxloud26", "/design/bornxloud25"],
-    description:
-      "Merch design for streetwear brand Born Loud, including the BXL hoodie drop and the HOL! Spring 2026 collection (continuously updated).",
-    thumbnails: [
-      "/design/bornxloud26/IMG_9346.png",
-      "/design/bornxloud26/IMG_2520.png",
-      "/design/bornxloud25/01.jpg",
-      "/design/bornxloud26/IMG_8154.png",
-    ],
-  },
-  {
-    id: 12,
-    slug: "mruhacks2026",
-    title: "MRUHacks 2026",
-    date: "2026-09",
-    tags: ["Marketing", "Design"],
-    imageFolder: "/design/mruhacks2026",
-    description:
-      "Branding and marketing design for MRUHacks 2026, including the Journey to MRUHacks workshop series and applications campaign.",
-    thumbnails: [
-      "/design/mruhacks2026/mruhacks2026-regopen.png",
-      "/design/mruhacks2026/mruhacks2026-hackathon101.png",
-      "/design/mruhacks2026/mruhacks2026-gitgood.png",
-    ],
-  },
 ];
 
-export function formatDate(date: string): string {
+function formatDate(date: string): string {
+  if (date === "present") return "Present";
   const match = date.match(/^(\d{4})-(\d{2})$/);
   if (!match) return date;
   const [, year, month] = match;
@@ -218,6 +282,14 @@ export function formatDate(date: string): string {
   );
 }
 
+/** "Sep 2026", or "2025 – Present" / "Jan 2025 – Mar 2026" for a range. */
+export function formatDateRange(project: Project): string {
+  const { start, end } = project;
+  if (!end || end === start) return formatDate(start);
+  return `${formatDate(start)} – ${formatDate(end)}`;
+}
+
+/** Projects appear on the site in the same order they're listed above. */
 export function sortedProjects(list: Project[] = projects): Project[] {
-  return [...list].sort((a, b) => (a.date < b.date ? 1 : -1));
+  return list;
 }

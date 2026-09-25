@@ -29,7 +29,8 @@ export async function GET(request: NextRequest) {
       withFileTypes: true,
     });
 
-    // Filter for image files and sort alphabetically
+    // Filter for image files and sort like Finder does (case-insensitive,
+    // numbers compared by value) so filename prefixes control the order
     const imageExtensions = [
       ".jpg",
       ".jpeg",
@@ -46,8 +47,11 @@ export async function GET(request: NextRequest) {
           .substring(file.name.lastIndexOf("."));
         return imageExtensions.includes(ext);
       })
-      .map((file) => `/${folderPath}/${file.name}`)
-      .sort();
+      .map((file) => file.name)
+      .sort((a, b) =>
+        a.localeCompare(b, "en", { numeric: true, sensitivity: "base" })
+      )
+      .map((name) => `/${folderPath}/${name}`);
 
     return NextResponse.json({ images: imageFiles });
   } catch (error) {
