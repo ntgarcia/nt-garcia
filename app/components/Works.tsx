@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { formatDateRange, sortedProjects, type Project } from "../data/projects";
 import { optimizedSrc } from "../lib/imageUrl";
-import { useProjectImages } from "../lib/useProjectImages";
+import { projectImages } from "../lib/projectImages";
 import Lightbox from "./Lightbox";
 
 /** Project pages aren't ready yet — flip this on once they are. */
@@ -20,7 +20,7 @@ const ProjectRow = ({
   project: Project;
   onImageClick: (images: string[], index: number) => void;
 }) => {
-  const { images } = useProjectImages(project);
+  const images = projectImages(project);
   const rowRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);

@@ -18,7 +18,7 @@ export type Project = {
   client?: ProjectClient;
   /** Short note shown under the project: your contributions, collaborators, etc. */
   description?: string;
-  /** Folder(s) under /public to read the full gallery from (via /api/images). */
+  /** Folder(s) under /public to read the full gallery from (listed at build time by scripts/generate-image-manifest.mjs). */
   imageFolder?: string | string[];
   /** Images shown in the homepage thumbnail row, in order. */
   thumbnails: string[];

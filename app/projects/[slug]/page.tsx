@@ -5,18 +5,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDateRange, projects } from "../../data/projects";
 import { optimizedSrc } from "../../lib/imageUrl";
-import { useProjectImages } from "../../lib/useProjectImages";
+import { projectImages } from "../../lib/projectImages";
 
 export default function ProjectPage() {
   const params = useParams();
   const slug = params.slug as string;
 
   const project = projects.find((p) => p.slug === slug);
-  const { images: allImages, loading } = useProjectImages(project);
-
   if (!project) {
     notFound();
   }
+
+  const allImages = projectImages(project);
 
   return (
     <div className="relative min-h-screen bg-white">
@@ -74,7 +74,7 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        {!loading && (
+        {allImages.length > 0 && (
           <div className="px-4 md:px-8">
             <div className="max-w-7xl mx-auto">
               <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
